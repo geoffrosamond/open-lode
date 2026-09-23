@@ -1034,6 +1034,127 @@ const CL_PROJECTS: Project[] = [
   },
 ];
 
+const RE_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode seven. The last several briefings were countries. This one is an element, and a small one. Rhenium. There is no rhenium mine. I am Leo.",
+  },
+  {
+    heading: "A gas in a roaster",
+    body: "It sits in molybdenite, and molybdenite sits in porphyry copper. When the molybdenum concentrate is roasted, rhenium leaves as a gas. A scrubber catches kilograms. Without one, the metal goes up the stack. A by-product of a by-product.",
+  },
+  {
+    heading: "The scale",
+    body: "The world mined about 81,000 kilograms in 2025, on the US Geological Survey’s estimate. Eighty-one tonnes for the year. Very pure metal averaged about 2,600 dollars a kilogram, nearly double the year before. Most of it goes into nickel superalloys for turbine blades. A second life is the petroleum-reforming catalyst.",
+  },
+  {
+    heading: "The old sentence",
+    body: "Chile, about 30,000 kilograms, is the largest line. Not a rhenium pit: copper-molybdenum pits, and roasters — Molymet chief among them — that catch the gas. The United States, about 9,800 kilograms of primary metal, and still a large buyer: apparent consumption near 38,000 kilograms. Poland, about 10,000, from KGHM’s copper circuit. China, about 20,000, estimated and revised upward, without a plant I would name. Uzbekistan, about 7,000. Kazakhstan, about 1,000 kilograms. One tonne. The name is famous. The kilogram is not.",
+  },
+  {
+    heading: "The second mine",
+    body: "The United States and Germany lead the secondary metal: scrap superalloy, foundry revert, spent catalyst. World secondary output, outside the closed loop of oil catalysts, is put somewhere between 20,000 and 25,000 kilograms. A second mine, made of old blades.",
+  },
+  {
+    heading: "Three habits",
+    body: "Count kilograms, not tonnes of ore. Ask who owns the scrubber, not who owns the pit. And if a list of producers still sets Kazakhstan beside Chile, ask for the year on the table. A higher price does not invent a primary rhenium mine. It invents a stronger reason to scrub a flue that already exists.",
+  },
+];
+
+const RE_PROJECTS: Project[] = [
+  {
+    id: "molymet",
+    name: "Chilean roasters",
+    company: "Molymet and the copper pits",
+    state: "CL",
+    place: "Chile",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "30,000 kg",
+    heard: true,
+    stillOpen: "Whether every flue is scrubbed",
+    note: "USGS mine production for 2025: about 30,000 kilograms, the largest national line. Not a rhenium mine. Porphyry copper, then molybdenite, then a roast. Molymet is the processor that has spent decades catching the gas. The Survey’s Chilean reserve figure, about 1.3 million kilograms, is rhenium inside molybdenum deposits, not bars in a vault.",
+  },
+  {
+    id: "china-re",
+    name: "Chinese estimate",
+    company: "Not named in the Survey",
+    state: "CN",
+    place: "China",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "20,000 kg",
+    heard: true,
+    stillOpen: "A plant name worth trusting",
+    note: "About 20,000 kilograms in the 2025 estimate, revised upward from older tables. Large enough to sit second. The Survey does not decorate it with a roaster I would repeat. Treat the kilogram as an estimate, not a site visit.",
+  },
+  {
+    id: "kghm-re",
+    name: "KGHM circuit",
+    company: "KGHM",
+    state: "PL",
+    place: "Lower Silesia, Poland",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "10,000 kg",
+    heard: true,
+    stillOpen: "A copper by-product the old sentence forgets",
+    note: "About 10,000 kilograms, recovered on the copper circuit. Ahead of the United States on the 2025 mine table, and absent from the slogan that jumps from Chile to Kazakhstan.",
+  },
+  {
+    id: "us-primary-re",
+    name: "Southwestern roasters",
+    company: "United States primary",
+    state: "US",
+    place: "Southwestern porphyries",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "9,800 kg",
+    heard: true,
+    stillOpen: "The imports, which are larger than the roast",
+    note: "Primary production about 9,800 kilograms in 2025, up from 9,310. Apparent US consumption was near 38,000 kilograms. Imports of metal, powder, and ammonium perrhenate come from Chile, Poland, Germany, Canada, and Kazakhstan. America prints kilograms and buys more.",
+  },
+  {
+    id: "uzbekistan-re",
+    name: "Uzbek circuit",
+    company: "Copper-molybdenum roasters",
+    state: "UZ",
+    place: "Uzbekistan",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "7,000 kg",
+    heard: true,
+    stillOpen: "A line in the table, not a prospectus",
+    note: "About 7,000 kilograms in the 2025 estimate. Enough to outprint Kazakhstan several times over. Not a project you can subscribe to. A reminder that the table is wider than the slogan.",
+  },
+  {
+    id: "secondary-re",
+    name: "Old blades",
+    company: "United States and Germany",
+    state: "2nd",
+    place: "Scrap, revert, and spent catalyst",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "20–25 t world",
+    heard: true,
+    stillOpen: "Whether the scrap circuit grows with the price",
+    note: "The Survey calls the United States and Germany the leading secondary producers. World secondary output, excluding rhenium that stays inside the oil-catalyst loop, is estimated at 20,000 to 25,000 kilograms for 2025. A second mine, made of old turbine blades. US secondary tonnes are not separately published.",
+  },
+  {
+    id: "kazakhstan-re",
+    name: "Kazakhstan",
+    company: "Mine production, estimated",
+    state: "KZ",
+    place: "Kazakhstan",
+    commodities: ["Rhenium"],
+    stage: "Operating",
+    capital: "1,000 kg",
+    heard: true,
+    stillOpen: "A reputation larger than the kilogram",
+    note: "About 1,000 kilograms of mine production in the 2025 estimate, down from about 1,500 the year before. The name still appears on import docks — the United States does buy Kazakh rhenium — and in old sentences that list it beside Chile. One tonne is not thirty.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -1191,6 +1312,32 @@ export const EPISODES: Episode[] = [
     projects: CL_PROJECTS,
     defaultOpen: "los-bronces-andina",
   },
+  {
+    id: "rhenium",
+    number: "07",
+    country: "Rhenium",
+    title: "The kilogram",
+    kicker: "September 2026 · Episode 07",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-rhenium.mp3",
+    lede: "Episode seven is not a country. Rhenium is a gas caught when molybdenum from porphyry copper is roasted. Leo reads the Survey’s 2025 kilograms: Chile first, Kazakhstan a long way behind the sentence people still repeat.",
+    disclaimer:
+      "Kilograms and the price are the US Geological Survey’s Mineral Commodity Summaries, February 2026, estimates for 2025. Not a recommendation, and not a substitute for the table or a roaster’s own assay.",
+    regionLabel: "Country",
+    regionAll: "countries",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Molymet”.",
+    stats: [
+      { label: "World", value: "81 t" },
+      { label: "Chile", value: "30 t" },
+      { label: "Per kg", value: "$2,600" },
+    ],
+    transcript: RE_TRANSCRIPT,
+    commodities: ["Rhenium"],
+    regions: ["CL", "CN", "PL", "US", "UZ", "KZ", "2nd"],
+    projects: RE_PROJECTS,
+    defaultOpen: "molymet",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "chile";
+export const DEFAULT_EPISODE_ID = "rhenium";
