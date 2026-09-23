@@ -29,7 +29,7 @@ export const EPISODE = {
   kicker: "September 2026 · Episode 01",
   voice: "Leo",
   voiceNote: "English gentleman · unhurried British delivery",
-  src: "/podcast/open-lode-briefing.mp3",
+  src: "/podcast/episodes/australia/briefing.mp3",
 };
 
 export const TRANSCRIPT: { heading: string; body: string }[] = [
@@ -1656,7 +1656,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 02",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-sri-lanka.mp3",
+    src: "/podcast/episodes/sri-lanka/briefing.mp3",
     lede: "Episode two leaves Australia for Sri Lanka: vein graphite that still ships as a lump, and east-coast mineral sands that still ship as a concentrate. Read by Leo.",
     disclaimer:
       "Figures are compiled from public notices through September 2026 — the Kahatagaha expression of interest, company results, and the state miners’ own product notes. Not a recommendation, and not a substitute for the tender or the study.",
@@ -1682,7 +1682,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 03",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-south-africa.mp3",
+    src: "/podcast/episodes/south-africa/briefing.mp3",
     lede: "Episode three is South Africa: a country that already sells platinum, chrome, and manganese. Leo reads what is still open — Platreef’s ramp-up, two rare-earth paths, and a copper cheque that is not yet drawn.",
     disclaimer:
       "Figures are compiled from public notices through September 2026 — company results, the Reserve Bank approval reported this month, Mintek’s June note, and the miners’ own guidance. Not a recommendation, and not a substitute for the funding conditions or the nuclear licence.",
@@ -1708,7 +1708,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 04",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-brazil.mp3",
+    src: "/podcast/episodes/brazil/briefing.mp3",
     lede: "Episode four is Brazil: most of the world’s niobium, one producing rare-earth mine, and no refinery of its own. Leo reads the clay, the lithium restart, and the studies that still ship their separation abroad.",
     disclaimer:
       "Figures are compiled from public notices through September 2026 — company studies, the September minerals law, and the miners’ own guidance. Not a recommendation, and not a substitute for the licence or the offtake.",
@@ -1734,7 +1734,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 05",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-peru.mp3",
+    src: "/podcast/episodes/peru/briefing.mp3",
     lede: "Episode five is Peru: a copper country that already ships, and a ministry book of 66 projects worth more than 64 billion dollars that mostly do not. Leo reads Tía María, the Cajamarca concepts, and a lithium pilot in Lima.",
     disclaimer:
       "Figures follow the mines ministry’s 2026 portfolio, company notes through September 2026, and the minister’s own list. Not a recommendation, and not a substitute for the water balance or the permit.",
@@ -1760,7 +1760,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 06",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-chile.mp3",
+    src: "/podcast/episodes/chile/briefing.mp3",
     lede: "Episode six is Chile: the world’s copper warehouse, and sixty-nine salars of which one produces lithium. Leo reads the joint mine plan above Santiago, Centinela’s build, and the permits that are still the real project.",
     disclaimer:
       "Figures are compiled from company announcements and the industry portfolio through September 2026, including the Los Bronces–Andina agreement and the June environmental approval at Penco. Not a recommendation, and not a substitute for the resolution itself.",
@@ -1786,7 +1786,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 07",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-rhenium.mp3",
+    src: "/podcast/episodes/rhenium/briefing.mp3",
     lede: "Episode seven is not a country. Rhenium is a gas caught when molybdenum from porphyry copper is roasted. Leo reads the Survey’s 2025 kilograms: Chile first, Kazakhstan a long way behind the sentence people still repeat.",
     disclaimer:
       "Kilograms and the price are the US Geological Survey’s Mineral Commodity Summaries, February 2026, estimates for 2025. Not a recommendation, and not a substitute for the table or a roaster’s own assay.",
@@ -1812,7 +1812,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 08",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-philippines.mp3",
+    src: "/podcast/episodes/philippines/briefing.mp3",
     lede: "Episode eight is the Philippines: second in mined nickel, and still mostly a seller of ore. Leo reads the two leach plants that exist, Silangan’s slipped start, and Tampakan — where a huge headline is not a cheque.",
     disclaimer:
       "Figures follow company statements and the government’s June 2026 investor pitch, through this month. Not a recommendation. A named quarter is not a pour, and a gross metal value is not a capital cost.",
@@ -1838,7 +1838,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 09",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-indonesia.mp3",
+    src: "/podcast/episodes/indonesia/briefing.mp3",
     lede: "Episode nine is Indonesia: more than 60 percent of the world’s nickel, an ore ban that worked, and a 2026 quota the market does not believe. Leo reads Weda Bay’s stop-and-start, and the pig iron Jakarta is now trying not to build.",
     disclaimer:
       "The quota range, the May price, and Weda Bay’s restart follow Reuters on 23 September 2026 and the ministry’s August denial. Allocations move, and are not fully published. Not a recommendation.",
@@ -1864,7 +1864,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 10",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-india.mp3",
+    src: "/podcast/episodes/india/briefing.mp3",
     lede: "Episode ten is India: a critical-minerals mission with 56 blocks auctioned and, in lithium and magnets, almost no mines. Leo reads Reasi as laterite, not carbonate, and a zinc company collecting options.",
     disclaimer:
       "The auction count is the Ministry of Mines, 23 June 2026: 56 blocks from 88 offered. Reasi’s tonnes are lithium-bearing laterite, not carbonate. Not a recommendation, and not a substitute for the resource statement.",
@@ -1890,7 +1890,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Episode 11",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-myanmar.mp3",
+    src: "/podcast/episodes/myanmar/briefing.mp3",
     lede: "Episode eleven is Myanmar: heavy rare earths and tin that show up in China’s customs book, and almost nowhere else. Leo reads who holds the Kachin hills, and a tin figure that is ore, not metal.",
     disclaimer:
       "The 27,000 tonnes are rare-earth oxide equivalent exported to China in 2024, as compiled by the US Geological Survey. The tin figure is Chinese customs for ore and concentrate in the first half of 2026, reported by Fastmarkets on 22 September. Control of the ground changes. Not a recommendation.",
@@ -1916,7 +1916,7 @@ export const EPISODES: Episode[] = [
     kicker: "September 2026 · Special · Z 73",
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
-    src: "/podcast/open-lode-tantalum.mp3",
+    src: "/podcast/episodes/tantalum/briefing.mp3",
     lede: "A special briefing, not a country. Tantalum is a powder sold into capacitors. The tonnes are mostly Congolese. The clean bag is Australian. Rwanda, Congo, and Brazil all sit on the identity file before the funds do.",
     disclaimer:
       "Tonnes are the US Geological Survey’s Mineral Commodity Summaries, February 2026, estimates for 2025, contained tantalum. Import shares are 2021–24. The June 2025 peace agreement is the Survey’s own note, hedged with “if sustained.” Not a recommendation, and not a compliance opinion.",
