@@ -2,13 +2,19 @@ import { useMemo, useState, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { Player } from "@/components/player";
-import { DEFAULT_EPISODE_ID, EPISODES, type Project } from "@/data/briefing";
+import { DEFAULT_EPISODE_ID, EPISODES, type Episode, type Project } from "@/data/briefing";
 
 export const Route = createFileRoute("/")({ component: Home });
+
+function kindOf(item: Episode) {
+  return item.kind ?? (item.symbol ? "element" : "country");
+}
 
 function Home() {
   const [episodeId, setEpisodeId] = useState(DEFAULT_EPISODE_ID);
   const episode = EPISODES.find((item) => item.id === episodeId) ?? EPISODES[0];
+  const [shelf, setShelf] = useState<"country" | "element">(kindOf(episode));
+  const [episodeQuery, setEpisodeQuery] = useState("");
   const [query, setQuery] = useState("");
   const [commodity, setCommodity] = useState<string>("All");
   const [region, setRegion] = useState<string>("All");
@@ -25,6 +31,16 @@ function Home() {
     setOnlyHeard(false);
     setOpenId(next.defaultOpen);
   }
+
+  const listed = useMemo(() => {
+    const q = episodeQuery.trim().toLowerCase();
+    return EPISODES.filter((item) => kindOf(item) === shelf).filter((item) => {
+      if (!q) return true;
+      return `${item.country} ${item.symbol ?? ""} ${item.title} ${item.number}`
+        .toLowerCase()
+        .includes(q);
+    });
+  }, [shelf, episodeQuery]);
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -45,7 +61,7 @@ function Home() {
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <header className="border-b border-rule pb-6">
         <p className="text-xs font-semibold tracking-widest text-copper uppercase">
-          Critical minerals · {episode.country}
+          Critical minerals · {episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}
         </p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -65,24 +81,57 @@ function Home() {
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
         <aside className="min-w-0 lg:sticky lg:top-4">
-          <div className="mb-3 flex w-full gap-2 overflow-x-auto pb-1" role="group" aria-label="Episode">
-            {EPISODES.map((item) => (
+          <div className="mb-3 flex gap-2" role="group" aria-label="Shelf">
+            <Chip
+              active={shelf === "country"}
+              onClick={() => {
+                setShelf("country");
+                setEpisodeQuery("");
+              }}
+            >
+              Countries
+            </Chip>
+            <Chip
+              active={shelf === "element"}
+              onClick={() => {
+                setShelf("element");
+                setEpisodeQuery("");
+              }}
+            >
+              Elements
+            </Chip>
+          </div>
+          <div className="relative mb-2">
+            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
+            <input
+              value={episodeQuery}
+              onChange={(event) => setEpisodeQuery(event.target.value)}
+              placeholder={shelf === "element" ? "Find an element or a symbol" : "Find a country"}
+              aria-label={shelf === "element" ? "Find an element" : "Find a country"}
+              className="w-full rounded-full border border-rule bg-card py-2 pr-4 pl-10 text-sm text-ink placeholder:text-muted"
+            />
+          </div>
+          <div className="mb-3 max-h-72 space-y-1 overflow-y-auto pr-1" role="group" aria-label="Episode">
+            {listed.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 aria-pressed={item.id === episode.id}
                 onClick={() => chooseEpisode(item.id)}
                 className={
-                  "min-h-11 shrink-0 rounded-full px-4 py-2 text-left text-sm transition-colors " +
+                  "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
                   (item.id === episode.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
                 }
               >
-                <span className="block text-xs font-semibold tracking-widest uppercase">
-                  {item.number}
+                <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
+                  {item.symbol || item.number}
                 </span>
                 <span className="font-display text-base leading-tight">{item.country}</span>
               </button>
             ))}
+            {listed.length === 0 ? (
+              <p className="px-3 py-2 text-sm text-muted">Nothing on this shelf matches.</p>
+            ) : null}
           </div>
           <Player key={episode.id} episode={episode} />
           <p className="mt-3 text-xs leading-relaxed text-muted">{episode.disclaimer}</p>

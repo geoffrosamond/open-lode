@@ -1,3 +1,5 @@
+import { SHELF } from "./shelf";
+
 export type Stage =
   | "FID taken"
   | "Decision pending"
@@ -362,6 +364,9 @@ export type Episode = {
   regions: readonly string[];
   projects: Project[];
   defaultOpen: string;
+  /** Country briefings, or an element special named with its symbol. */
+  kind?: "country" | "element";
+  symbol?: string;
 };
 
 const SRI_TRANSCRIPT: Episode["transcript"] = [
@@ -1621,7 +1626,7 @@ const TA_PROJECTS: Project[] = [
   },
 ];
 
-export const EPISODES: Episode[] = [
+const RECORDED: Episode[] = [
   {
     id: "australia",
     number: "01",
@@ -1780,8 +1785,10 @@ export const EPISODES: Episode[] = [
   },
   {
     id: "rhenium",
-    number: "07",
+    number: "Re",
     country: "Rhenium",
+    symbol: "Re",
+    kind: "element",
     title: "The kilogram",
     kicker: "September 2026 · Episode 07",
     voice: "Leo",
@@ -1912,6 +1919,8 @@ export const EPISODES: Episode[] = [
     id: "tantalum",
     number: "Ta",
     country: "Tantalum",
+    symbol: "Ta",
+    kind: "element",
     title: "The identity file",
     kicker: "September 2026 · Special · Z 73",
     voice: "Leo",
@@ -1935,5 +1944,7 @@ export const EPISODES: Episode[] = [
     defaultOpen: "drc-coltan",
   },
 ];
+
+export const EPISODES: Episode[] = [...RECORDED, ...(SHELF as Episode[])];
 
 export const DEFAULT_EPISODE_ID = "tantalum";
