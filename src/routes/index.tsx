@@ -64,12 +64,18 @@ function Home() {
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <header className="border-b border-rule pb-6">
-        <p className="text-xs font-semibold tracking-widest text-copper uppercase">
+        <h1 className="m-0">
+          <img
+            src="/blog-header-logo.jpg"
+            alt="Open Lode — a geological prospectus"
+            className="w-full rounded-2xl"
+          />
+        </h1>
+        <p className="mt-4 text-xs font-semibold tracking-widest text-copper uppercase">
           Critical minerals · {episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}
         </p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-4xl leading-none font-medium sm:text-5xl">Open Lode</h1>
             <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">{episode.lede}</p>
           </div>
           <dl className="grid grid-cols-3 gap-x-4 gap-y-1 text-sm">
