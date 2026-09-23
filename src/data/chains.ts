@@ -12,6 +12,15 @@ export type ChainStep = {
   holders: ChainHolder[];
 };
 
+export type ChainPath = {
+  id: string;
+  name: string;
+  use: string;
+  pinch: string;
+  lede: string;
+  steps: ChainStep[];
+};
+
 export type Chain = {
   id: string;
   name: string;
@@ -22,6 +31,8 @@ export type Chain = {
   pinch: string;
   lede: string;
   steps: ChainStep[];
+  /** When one mineral is more than one chain. */
+  paths?: ChainPath[];
 };
 
 export const CHAINS: Chain[] = [
@@ -207,7 +218,142 @@ export const CHAINS: Chain[] = [
     symbol: "REE",
     use: "A magnet",
     pinch: "Separation",
-    lede: "The ore is several countries. The separated oxides are not. Neodymium and praseodymium make the magnet. Dysprosium and terbium keep it working when it is hot.",
+    lede: "Rare earths are not one chain. Neodymium and praseodymium make the magnet. Dysprosium and terbium keep it working when it is hot. Most of the tonnes in the ore are neither.",
+    paths: [
+      {
+        id: "lights",
+        name: "Lights",
+        use: "A magnet",
+        pinch: "Separation",
+        lede: "Neodymium and praseodymium are the magnet. The ore is a mixed bag. The oxide is what a magnet plant can buy. China separates most of it. The other commercial doors are Lynas, in Malaysia, and MP Materials, in the United States.",
+        steps: [
+          {
+            id: "ore",
+            name: "Ore",
+            what: "Mt Weld in Australia, Mountain Pass in the United States, and the Chinese pits. Nolans is a project in this book, not yet a tonne on this chain. A concentrate is not an oxide.",
+            holders: [
+              { name: "Australia", episodeId: "australia", role: "Mt Weld" },
+              { name: "United States", episodeId: "united-states", role: "Mountain Pass" },
+              { name: "China", episodeId: "china", role: "The volume" },
+            ],
+          },
+          {
+            id: "separation",
+            name: "Separation",
+            what: "The pinch. Mixed concentrate becomes neodymium and praseodymium oxides. China does most of this. Lynas separates at Kuantan. In 2026 Malaysia renewed that plant’s licence for ten years. MP Materials separates in the United States. A second door is not a second China.",
+            holders: [
+              { name: "China", episodeId: "china", role: "Most of the oxides" },
+              { name: "Australia", episodeId: "australia", role: "Lynas, separated in Malaysia" },
+              { name: "United States", episodeId: "united-states", role: "MP Materials" },
+            ],
+          },
+          {
+            id: "metal",
+            name: "Metal",
+            what: "Oxide to metal. Still not a magnet. This step is mostly Chinese.",
+            holders: [{ name: "China", episodeId: "china", role: "NdPr metal" }],
+          },
+          {
+            id: "magnet",
+            name: "Magnet",
+            what: "Sintered neodymium-iron-boron. China and Japan make them. In July 2026 Lynas and Korea’s JS Link signed to build a plant at Kuantan, planned at 3,000 tonnes a year of magnets, and to supply JS Link through January 2038. Lynas is putting about A$50 million into JS Link. A signature is not a plant.",
+            holders: [
+              { name: "China", episodeId: "china", role: "The plants" },
+              { name: "Japan", role: "Magnets" },
+              { name: "South Korea", episodeId: "south-korea", role: "JS Link, signed" },
+            ],
+          },
+          {
+            id: "use",
+            name: "Use",
+            what: "A motor, a turbine, a drive. The buyer takes the magnet, or the motor. Not the ore.",
+            holders: [
+              { name: "China", episodeId: "china", role: "Motors" },
+              { name: "Japan", role: "Motors" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "heavies",
+        name: "Heavies",
+        use: "The hot magnet",
+        pinch: "Separation",
+        lede: "Dysprosium and terbium are added so the magnet holds when it is hot. They are a different rock from the light pits: ionic clay. The separation is tighter, and it has been almost entirely Chinese.",
+        steps: [
+          {
+            id: "clay",
+            name: "Clay",
+            what: "Ionic clay, not Mt Weld. China, and clay that has moved through Myanmar. A bag of clay is not an oxide.",
+            holders: [
+              { name: "China", episodeId: "china", role: "The clay" },
+              { name: "Myanmar", episodeId: "myanmar", role: "Clay that moves" },
+            ],
+          },
+          {
+            id: "separation",
+            name: "Separation",
+            what: "The pinch, tighter than for the lights. China. Lynas said it started separated dysprosium oxide at Kuantan in May 2025, and by the half-year to December 2025 had shipped dysprosium and terbium oxides. The company calls itself the only commercial producer of separated heavies outside China. That is their sentence. It is not a second China.",
+            holders: [
+              { name: "China", episodeId: "china", role: "Almost all of it" },
+              { name: "Australia", episodeId: "australia", role: "Lynas, at Kuantan" },
+            ],
+          },
+          {
+            id: "magnet",
+            name: "Into the magnet",
+            what: "The heavies are not a motor of their own. They are added to the neodymium magnet. The July 2026 JS Link signing, if the plant is built, is a magnet plant. It is not a clay mine.",
+            holders: [
+              { name: "China", episodeId: "china", role: "The addition" },
+              { name: "Japan", role: "The addition" },
+            ],
+          },
+          {
+            id: "use",
+            name: "Use",
+            what: "The same motor, on a hotter day. A drive train notices when this line stops. The volume of the ore does not.",
+            holders: [
+              { name: "China", episodeId: "china", role: "Motors" },
+              { name: "Japan", role: "Motors" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "rest",
+        name: "The rest",
+        use: "Not a motor",
+        pinch: "The customer",
+        lede: "Most of the tonnes in a rare-earth ore are cerium and lanthanum. They are not the magnet. A chain that prices the whole basket as neodymium is counting the wrong metal.",
+        steps: [
+          {
+            id: "ore",
+            name: "In the ore",
+            what: "Cerium and lanthanum come out of the same pit as the magnet pair. They are the bulk of the tonnes.",
+            holders: [
+              { name: "China", episodeId: "china", role: "The volume" },
+              { name: "Australia", episodeId: "australia", role: "In the same concentrate" },
+              { name: "United States", episodeId: "united-states", role: "In the same concentrate" },
+            ],
+          },
+          {
+            id: "separation",
+            name: "Split off",
+            what: "They are separated so the neodymium can be sold. The residue still has to go somewhere.",
+            holders: [
+              { name: "China", episodeId: "china", role: "The split" },
+              { name: "Australia", episodeId: "australia", role: "Lynas" },
+            ],
+          },
+          {
+            id: "use",
+            name: "Use",
+            what: "Catalysts, glass, polishing powder. A different customer, and a different price. Not a motor.",
+            holders: [{ name: "China", episodeId: "china", role: "The customer" }],
+          },
+        ],
+      },
+    ],
     steps: [
       {
         id: "mine",

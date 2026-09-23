@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { Player } from "@/components/player";
@@ -420,28 +420,48 @@ function InstitutionalFlow() {
 }
 
 function ChainView({ chain, onOpen }: { chain: Chain; onOpen: (episodeId: string) => void }) {
+  const [pathId, setPathId] = useState(chain.paths?.[0]?.id ?? "");
+  useEffect(() => {
+    setPathId(chain.paths?.[0]?.id ?? "");
+  }, [chain.id]);
+  const path = chain.paths?.find((item) => item.id === pathId) ?? chain.paths?.[0];
+  const steps = path?.steps ?? chain.steps;
+  const lede = path?.lede ?? chain.lede;
+  const pinch = path?.pinch ?? chain.pinch;
+  const use = path?.use ?? chain.use;
+
   return (
     <div>
       <p className="text-xs font-semibold tracking-widest text-copper uppercase">
         Supply chain · {chain.name}
+        {path ? ` · ${path.name}` : ""}
       </p>
-      <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{chain.lede}</p>
+      <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{lede}</p>
+      {chain.paths ? (
+        <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Rare earth chain">
+          {chain.paths.map((item) => (
+            <Chip key={item.id} active={item.id === path?.id} onClick={() => setPathId(item.id)}>
+              {item.name}
+            </Chip>
+          ))}
+        </div>
+      ) : null}
       <dl className="mt-4 mb-4 grid max-w-md grid-cols-3 gap-x-4 text-sm">
         <div>
           <dt className="text-muted">Steps</dt>
-          <dd className="font-display text-2xl tabular-nums">{chain.steps.length}</dd>
+          <dd className="font-display text-2xl tabular-nums">{steps.length}</dd>
         </div>
         <div>
           <dt className="text-muted">Pinch</dt>
-          <dd className="font-display text-2xl">{chain.pinch}</dd>
+          <dd className="font-display text-2xl">{pinch}</dd>
         </div>
         <div>
           <dt className="text-muted">Buys</dt>
-          <dd className="font-display text-2xl">{chain.use}</dd>
+          <dd className="font-display text-2xl">{use}</dd>
         </div>
       </dl>
       <ol className="space-y-3">
-        {chain.steps.map((step, index) => (
+        {steps.map((step, index) => (
           <li key={step.id} className="rounded-card border border-rule bg-card p-4">
             <div className="flex items-baseline gap-3">
               <span className="font-display text-2xl text-copper tabular-nums">{index + 1}</span>
