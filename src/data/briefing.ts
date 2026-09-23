@@ -1525,6 +1525,102 @@ const MM_PROJECTS: Project[] = [
   },
 ];
 
+const TA_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is a special briefing, not a country. An element. Tantalum. Number seventy-three. The metal the capacitor industry buys as a powder. I am Leo.",
+  },
+  {
+    heading: "The tonnes",
+    body: "The world mined about 2,500 tonnes in 2025, on the Survey’s estimate, the same rounded figure as the year before. Most of it is coltan — columbite-tantalite — dug, bagged, and sold. Congo (Kinshasa) about 1,300 tonnes. Rwanda about 400. Nigeria about 390, which the usual sentence forgets. Brazil about 190. Australia about 50. Australia holds the large reserve. Australia’s mine output, this year, is not the story.",
+  },
+  {
+    heading: "The clean bag",
+    body: "Of the tantalum ore and concentrate the United States imported from 2021 through 2024, about 64 percent came from Australia. Congo was about 9 percent. A country can be a sliver of the world’s mining and two thirds of a careful buyer’s ore, if the bag has a mine on it.",
+  },
+  {
+    heading: "The powder",
+    body: "The offtake is capacitor powder: small, stable, used where an electronic failure is not acceptable. Recycled metal may be as much as 30 percent of what American primary processors consume. In September the Defense Logistics Agency placed an order of about 8.6 million dollars for tantalum ingots, for the stockpile, with a processor in Boyertown, Pennsylvania. A stockpile is a confession that the powder matters, and that the mine is somewhere else.",
+  },
+  {
+    heading: "The file",
+    body: "The release condition is the identity file. Conflict-mineral diligence. Funds do not sit until the bag has an origin. Rwanda, the Congo, and Brazil are all on that file. Mibra, in Minas Gerais, is an industrial pit, and it is still on the file. Rwanda’s exports have for years looked larger than the pits a visitor can count. Congolese coltan, including from Rubaya, has a habit of crossing a border and acquiring a new nationality. A peace agreement was signed in June 2025. The Survey’s verb was “if sustained.” A communiqué is not a bag and tag.",
+  },
+  {
+    heading: "Three habits",
+    body: "Ask for contained tantalum, not a weight of rock. Ask who filled the bag, not which port stamped it. And do not release the funds because the seller is Brazilian, or Australian, or Rwandan. Release them because the file names the mine, the transporter, and the smelter. Two thousand five hundred tonnes is a small industry. It is large enough to hide a war inside.",
+  },
+];
+
+const TA_PROJECTS: Project[] = [
+  {
+    id: "drc-coltan",
+    name: "Congolese coltan",
+    company: "Artisanal, and the traders",
+    state: "CD",
+    place: "Eastern Congo, including Rubaya",
+    commodities: ["Tantalum"],
+    stage: "Operating",
+    capital: "1,300 t",
+    heard: true,
+    stillOpen: "A mine on the bag, not a border stamp",
+    note: "The Survey’s 2025 estimate is about 1,300 tonnes of contained tantalum, roughly half the world. Coltan, not a single corporate pit. Rubaya, in North Kivu, is the name that belongs on the identity file. A June 2025 peace agreement between Congo and Rwanda is not a bag-and-tag. The Survey’s own verb was “if sustained.”",
+  },
+  {
+    id: "rwanda-ta",
+    name: "Rwandan exports",
+    company: "The export line, not a pit list",
+    state: "RW",
+    place: "Rwanda",
+    commodities: ["Tantalum"],
+    stage: "Operating",
+    capital: "400 t",
+    heard: true,
+    stillOpen: "A production figure a visitor can match to a hole",
+    note: "About 400 tonnes in the 2025 estimate. For years the exports have looked larger than the pits that can be counted, and Congolese material has a habit of acquiring a Rwandan nationality on the road. Rwanda sits on the identity file before any funds do. The stamp is not the origin.",
+  },
+  {
+    id: "nigeria-ta",
+    name: "Nigerian estimate",
+    company: "Artisanal",
+    state: "NG",
+    place: "Nigeria",
+    commodities: ["Tantalum"],
+    stage: "Operating",
+    capital: "390 t",
+    heard: true,
+    stillOpen: "A slogan that still omits it",
+    note: "About 390 tonnes, estimated, almost level with Rwanda and usually left out of the Great Lakes sentence. Largely artisanal. An estimate you omit is the one that later embarrasses the file.",
+  },
+  {
+    id: "mibra",
+    name: "Mibra",
+    company: "AMG",
+    ticker: "AMS:AMG",
+    state: "BR",
+    place: "Minas Gerais, Brazil",
+    commodities: ["Tantalum"],
+    stage: "Operating",
+    capital: "190 t, the country",
+    heard: true,
+    stillOpen: "The same identity file as the Congo",
+    note: "The industrial third pit. Brazil’s 2025 estimate is about 190 tonnes, down from about 210. A calm jurisdiction and a listed company do not take Mibra off the file. Origin is a line, not a reputation.",
+  },
+  {
+    id: "australia-ta",
+    name: "The Australian bag",
+    company: "Global Advanced Metals and the Western Australian pits",
+    state: "AU",
+    place: "Western Australia",
+    commodities: ["Tantalum"],
+    stage: "Operating",
+    capital: "50 t mined",
+    heard: true,
+    stillOpen: "Mine tonnes to match the reserve, and the import share",
+    note: "About 50 tonnes mined in the 2025 estimate, against a reserve the Survey has revised to about 120,000 tonnes. Of American imports of tantalum ore and concentrate from 2021 through 2024, about 64 percent came from Australia, and about 9 percent from Congo. The clean bag is the business. The tonne, this year, is not.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -1812,6 +1908,32 @@ export const EPISODES: Episode[] = [
     projects: MM_PROJECTS,
     defaultOpen: "kachin-clay",
   },
+  {
+    id: "tantalum",
+    number: "Ta",
+    country: "Tantalum",
+    title: "The identity file",
+    kicker: "September 2026 · Special · Z 73",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-tantalum.mp3",
+    lede: "A special briefing, not a country. Tantalum is a powder sold into capacitors. The tonnes are mostly Congolese. The clean bag is Australian. Rwanda, Congo, and Brazil all sit on the identity file before the funds do.",
+    disclaimer:
+      "Tonnes are the US Geological Survey’s Mineral Commodity Summaries, February 2026, estimates for 2025, contained tantalum. Import shares are 2021–24. The June 2025 peace agreement is the Survey’s own note, hedged with “if sustained.” Not a recommendation, and not a compliance opinion.",
+    regionLabel: "Country",
+    regionAll: "countries",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Rubaya”.",
+    stats: [
+      { label: "World", value: "2,500 t" },
+      { label: "Congo", value: "1,300 t" },
+      { label: "US ore, AU", value: "64%" },
+    ],
+    transcript: TA_TRANSCRIPT,
+    commodities: ["Tantalum"],
+    regions: ["CD", "RW", "NG", "BR", "AU"],
+    projects: TA_PROJECTS,
+    defaultOpen: "drc-coltan",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "myanmar";
+export const DEFAULT_EPISODE_ID = "tantalum";
