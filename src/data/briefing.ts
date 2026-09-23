@@ -1249,6 +1249,88 @@ const PH_PROJECTS: Project[] = [
   },
 ];
 
+const ID_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode nine. Tonight, Indonesia. The country mines more than 60 percent of the world’s nickel. It banned the export of the ore, and the smelters came. The problem now is how to stop that industry from eating itself. I am Leo.",
+  },
+  {
+    heading: "The ban that worked",
+    body: "The Philippines, last time, was still arguing about whether to ship the laterite. Indonesia settled that in 2020. The ore stays. A metal, or an intermediate, leaves. Morowali, in Central Sulawesi, and Weda Bay, in North Maluku, are where that decision became a skyline. Nickel pig iron for stainless steel, and high-pressure acid leach: a mixed hydroxide, and a cobalt credit the country did not exactly plan.",
+  },
+  {
+    heading: "The quota",
+    body: "This year the annual mining quota, the RKAB, was cut from about 379 million tonnes of ore to something like 250 to 260 million. The London price touched 20,000 dollars a tonne in May. It is back near 16,500. A mid-year review has already given some operators more. Neither the ministry nor the companies publish the full list. A quota you cannot read is a rumour with a letterhead.",
+  },
+  {
+    heading: "Weda Bay",
+    body: "Tsingshan holds the majority. Eramet of France has just under two fifths. Antam, the state miner, has a tenth. The mine’s allowance fell from about 42 million wet tonnes to 12. The pit stopped in May, when the year’s rock was used up. This week Eramet was restarting. In August the ministry denied a report that an extra 25 million tonnes had been granted. A restart and a denial can both be true. They are not a number you can model.",
+  },
+  {
+    heading: "Who eats first",
+    body: "New licences for plants that make only nickel pig iron, or only a crude matte, are being refused. The rock is meant to move toward battery-grade material. Nickel Industries was given a larger quota because it is building that kind of plant. A larger quota is not a finished refinery. Grasberg, in Papua, is still one of the great copper and gold mines. It is not why the nickel price moves. It is why a briefing that speaks only of laterite is incomplete.",
+  },
+  {
+    heading: "Three habits",
+    body: "Ask whether the tonne is ore, pig iron, or a hydroxide a battery maker can use. Ask for the quota in writing. And remember that a dominant producer does not automatically dominate the price. The ban worked. The glut is the proof.",
+  },
+];
+
+const ID_PROJECTS: Project[] = [
+  {
+    id: "weda-bay",
+    name: "Weda Bay",
+    company: "Tsingshan, Eramet, Antam",
+    ticker: "EPA:ERA",
+    state: "NMU",
+    place: "Halmahera, North Maluku",
+    commodities: ["Nickel"],
+    stage: "Operating",
+    capital: "Quota 12 Mt, from 42",
+    heard: true,
+    stillOpen: "A quota you can actually read",
+    note: "Among the largest nickel mines operating. The 2026 allowance was cut from about 42 million wet tonnes to 12. Mining stopped in May when that rock was used up. As of this week Eramet was restarting after a mid-year review. In August the ministry denied reports of an extra 25 million tonnes. A restart is not a published number.",
+  },
+  {
+    id: "morowali",
+    name: "Morowali",
+    company: "Indonesia Morowali Industrial Park",
+    state: "CSU",
+    place: "Central Sulawesi",
+    commodities: ["Nickel", "Cobalt"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Fewer pig-iron lines, not more",
+    note: "The skyline the ore ban built. Nickel pig iron for stainless steel, and leach plants that yield a mixed hydroxide and a cobalt credit. New licences for plants that stop at pig iron, or at a crude matte, are now being refused. The park is the industry. The argument is what it is allowed to add.",
+  },
+  {
+    id: "nickel-industries",
+    name: "Battery-grade line",
+    company: "Nickel Industries",
+    ticker: "ASX:NIC",
+    state: "CSU",
+    place: "Tied to the Sulawesi build-out",
+    commodities: ["Nickel"],
+    stage: "FID taken",
+    heard: true,
+    stillOpen: "The plant the extra quota was meant to reward",
+    note: "Given a larger 2026 ore quota because it is building battery-grade capacity rather than another pig-iron line. A larger quota is a hint about who eats first when the rock is rationed. It is not, by itself, a finished refinery.",
+  },
+  {
+    id: "grasberg",
+    name: "Grasberg",
+    company: "Freeport-McMoRan",
+    ticker: "NYSE:FCX",
+    state: "PAP",
+    place: "Papua",
+    commodities: ["Copper", "Gold"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Not the nickel price — the other half of the country",
+    note: "Still one of the great copper and gold mines. It does not explain why the nickel price fell from about 20,000 dollars a tonne in May to about 16,500 this week. It does explain why an Indonesia briefing that speaks only of laterite is incomplete.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -1458,6 +1540,32 @@ export const EPISODES: Episode[] = [
     projects: PH_PROJECTS,
     defaultOpen: "silangan",
   },
+  {
+    id: "indonesia",
+    number: "09",
+    country: "Indonesia",
+    title: "The quota",
+    kicker: "September 2026 · Episode 09",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-indonesia.mp3",
+    lede: "Episode nine is Indonesia: more than 60 percent of the world’s nickel, an ore ban that worked, and a 2026 quota the market does not believe. Leo reads Weda Bay’s stop-and-start, and the pig iron Jakarta is now trying not to build.",
+    disclaimer:
+      "The quota range, the May price, and Weda Bay’s restart follow Reuters on 23 September 2026 and the ministry’s August denial. Allocations move, and are not fully published. Not a recommendation.",
+    regionLabel: "Province",
+    regionAll: "provinces",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Weda Bay”.",
+    stats: [
+      { label: "World nickel", value: ">60%" },
+      { label: "Ore quota", value: "~250 Mt" },
+      { label: "LME", value: "$16,500" },
+    ],
+    transcript: ID_TRANSCRIPT,
+    commodities: ["Nickel", "Cobalt", "Copper", "Gold"],
+    regions: ["NMU", "CSU", "PAP"],
+    projects: ID_PROJECTS,
+    defaultOpen: "weda-bay",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "philippines";
+export const DEFAULT_EPISODE_ID = "indonesia";
