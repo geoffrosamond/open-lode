@@ -83,33 +83,12 @@ function Home() {
             className="w-full rounded-2xl"
           />
         </h1>
-        <p className="mt-4 text-xs font-semibold tracking-widest text-copper uppercase">
-          {exploring
-            ? `Supply chain · ${chain.name}`
-            : `Critical minerals · ${episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}`}
+        <p className="mt-5 max-w-3xl text-base leading-relaxed">
+          Open Lode is the Critical Minerals editorial desk: a collection of narrated briefings and
+          project notes covering the countries, elements, mines, and processing projects shaping
+          critical-mineral supply. Browse the shelf to understand what is being produced, what
+          remains open, and where capital, offtake, or development work may still be needed.
         </p>
-        <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
-              {exploring ? chain.lede : episode.lede}
-            </p>
-          </div>
-          <dl className="grid grid-cols-3 gap-x-4 gap-y-1 text-sm">
-            {(exploring
-              ? [
-                  { label: "Steps", value: String(chain.steps.length) },
-                  { label: "Pinch", value: chain.pinch },
-                  { label: "Buys", value: chain.use },
-                ]
-              : episode.stats
-            ).map((stat) => (
-              <div key={stat.label}>
-                <dt className="text-muted">{stat.label}</dt>
-                <dd className="font-display text-2xl tabular-nums">{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
       </header>
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
@@ -195,6 +174,20 @@ function Home() {
               <p className="px-3 py-2 text-sm text-muted">Nothing on this shelf matches.</p>
             ) : null}
           </div>
+          <div className="mb-3">
+            <p className="text-xs font-semibold tracking-widest text-copper uppercase">
+              This briefing · {episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{episode.lede}</p>
+            <dl className="mt-3 grid grid-cols-3 gap-x-3 text-sm">
+              {episode.stats.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="text-muted">{stat.label}</dt>
+                  <dd className="font-display text-xl tabular-nums">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
           <Player key={episode.id} episode={episode} />
           <p className="mt-3 text-xs leading-relaxed text-muted">{episode.disclaimer}</p>
         </aside>
@@ -278,6 +271,24 @@ function Home() {
 function ChainView({ chain, onOpen }: { chain: Chain; onOpen: (episodeId: string) => void }) {
   return (
     <div>
+      <p className="text-xs font-semibold tracking-widest text-copper uppercase">
+        Supply chain · {chain.name}
+      </p>
+      <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{chain.lede}</p>
+      <dl className="mt-4 mb-4 grid max-w-md grid-cols-3 gap-x-4 text-sm">
+        <div>
+          <dt className="text-muted">Steps</dt>
+          <dd className="font-display text-2xl tabular-nums">{chain.steps.length}</dd>
+        </div>
+        <div>
+          <dt className="text-muted">Pinch</dt>
+          <dd className="font-display text-2xl">{chain.pinch}</dd>
+        </div>
+        <div>
+          <dt className="text-muted">Buys</dt>
+          <dd className="font-display text-2xl">{chain.use}</dd>
+        </div>
+      </dl>
       <ol className="space-y-3">
         {chain.steps.map((step, index) => (
           <li key={step.id} className="rounded-card border border-rule bg-card p-4">
