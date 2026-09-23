@@ -519,4 +519,51 @@ export const CHAINS: Chain[] = [
       },
     ],
   },
+  {
+    id: "hubs",
+    name: "Hubs",
+    symbol: "Hub",
+    use: "A product",
+    pinch: "The contract",
+    lede: "A refinery is a lode when what leaves is a product a factory has already agreed to take. Concentrate is still the pit. The hub is the plant, and the offtake has to name the next thing: an oxide, a magnet, a cathode. A customer who is only “the market” is not a customer.",
+    steps: [
+      {
+        id: "kuantan",
+        name: "Kuantan",
+        what: "Lynas separates at Kuantan, in Malaysia, from Australian ore. The March 2026 renewal of the Japanese agreement, as the company set it out in August, includes a firm offtake of 5,000 tonnes a year of NdPr at a floor of US$110 a kilogram, and a firm offtake of half its heavy oxides, for Japanese industry. In July 2026 Lynas and JS Link signed an exclusive supply through January 2038, for JS Link’s magnet plant in Yesan and a plant JS Link plans at Kuantan, 3,000 tonnes a year of magnets. Lynas is putting about A$50 million into that build. The oxides have a buyer. The Malaysian magnet plant is still a signature.",
+        holders: [
+          { name: "Australia", episodeId: "australia", role: "Lynas, the oxides" },
+          { name: "Japan", role: "JARE, the firm tonnes" },
+          { name: "South Korea", episodeId: "south-korea", role: "JS Link, the magnets" },
+        ],
+      },
+      {
+        id: "fort-worth",
+        name: "Fort Worth",
+        what: "MP Materials turns Mountain Pass rare earths into magnets in Fort Worth. A report on 22 September 2026 says the plant is making them, that full rate is about 3,000 tonnes a year, and that 1,000 tonnes of that is General Motors’ share. GM is testing the motors. Cars by the end of 2026 are the timetable, not a delivery already banked. The lode here is the magnet, and the offtake is a carmaker.",
+        holders: [
+          { name: "United States", episodeId: "united-states", role: "MP, mine and magnet" },
+          { name: "General Motors", role: "1,000 tonnes, named" },
+        ],
+      },
+      {
+        id: "posco",
+        name: "Pohang to Georgia",
+        what: "On 23 September 2026 SK On agreed to buy about 1.1 trillion won, roughly US$738 million, of lithium-iron-phosphate cathode from POSCO Future M over three years from 2027. The cathodes are for energy-storage batteries at SK On’s plant in Georgia. This is not a mine. The lode is the cathode powder, and the buyer is a cell plant. It starts in 2027. A contract is not a shipment.",
+        holders: [
+          { name: "South Korea", episodeId: "south-korea", role: "POSCO Future M" },
+          { name: "United States", episodeId: "united-states", role: "SK On, Georgia" },
+        ],
+      },
+      {
+        id: "not-yet",
+        name: "Not yet a lode",
+        what: "Umicore at Kokkola already turns cobalt hydroxide into sulphate and tetroxide. That is a refined product. The customer is not named in the note I am reading. Keliber, nearby, is building hydroxide for battery makers; as of February the chemical plant was still due toward the end of 2026. Vale’s high-pressure plants at Morowali and Pomalaa are aimed at mixed hydroxide, 60,000 and 120,000 tonnes of nickel a year, and the company said in September they were still on a target of late 2026. The product is downstream. A named buyer is not in that notice. A plant without a named offtake is a capacity. It is not yet its own lode.",
+        holders: [
+          { name: "Finland", episodeId: "finland", role: "Kokkola, the chemical" },
+          { name: "Indonesia", episodeId: "indonesia", role: "MHP, not yet running" },
+        ],
+      },
+    ],
+  },
 ];
