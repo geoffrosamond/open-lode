@@ -6,7 +6,8 @@ export type Stage =
   | "Operating"
   | "Study reshaped"
   | "Exploration"
-  | "Scoping";
+  | "Scoping"
+  | "Conceptual";
 
 export type Project = {
   id: string;
@@ -353,6 +354,7 @@ export type Episode = {
   lede: string;
   disclaimer: string;
   regionLabel: string;
+  regionAll: string;
   emptyHint: string;
   stats: { label: string; value: string }[];
   transcript: { heading: string; body: string }[];
@@ -752,6 +754,147 @@ const BR_PROJECTS: Project[] = [
   },
 ];
 
+const PE_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode five. Tonight, Peru — already one of the world’s two great copper addresses, and a serious one for zinc, silver, and tin. The mines ministry’s 2026 book lists 66 projects and more than 64 billion dollars. Most of that money is not yet in the ground. I am Leo.",
+  },
+  {
+    heading: "The warehouse",
+    body: "Cerro Verde, above Arequipa, and Southern Copper’s pits at Toquepala and Cuajone, already move copper. Quellaveco, in Moquegua, is the rare recent proof that a new copper mine can be finished: Anglo American poured first concentrate in 2022. Antamina, in Áncash, is copper and a great deal of the country’s zinc. San Rafael, in Puno, is one of the serious tin mines left on earth. These are ships, not concepts.",
+  },
+  {
+    heading: "The minister’s list",
+    body: "This month Guillermo Shinno named the projects he wants unstuck: Zafranal, Galeno, Michiquillay, an expansion at Cerro Verde, Tía María, La Granja, and the silver project Corani. A minister’s list is a wish. Read the stage beside the name.",
+  },
+  {
+    heading: "Arequipa",
+    body: "Tía María, Southern Copper, in the Tambo Valley. The 2026 portfolio marks it in execution, about 1.8 billion dollars, with a start hoped for 2027. Farmers there have spent more than a decade saying the water is not spare. Zafranal, Teck with Mitsubishi, is copper and gold in detailed engineering: about 1.9 billion dollars, first production put at 2029. It has tried to be the neighbour that learned the water lesson. Detailed engineering is not a cheque.",
+  },
+  {
+    heading: "Cajamarca",
+    body: "Michiquillay is Southern’s, marked conceptual, about 2.5 billion dollars, a start no earlier than 2032. La Granja, First Quantum with Rio Tinto, is about 2.4 billion, still conceptual, and the ministry will not yet print a year. Galeno, Lumina Copper — Minmetals and Jiangxi — is a pre-feasibility of about 3.5 billion dollars, with environmental work moving in 2026, and still no sentence that contains the word construction.",
+  },
+  {
+    heading: "Puno",
+    body: "Falchani is volcanic lithium, American Lithium. This month the company said its pilot plant in Lima is running. A bench test recovered about 89 percent of the lithium, above the 80 percent in the 2024 preliminary assessment. The pilot is meant to treat six to ten tonnes so a feasibility study can be written later. A plant in the capital is not a mine on the plateau. Corani, Bear Creek, is silver in detailed engineering, under 600 million dollars, a start hoped for 2028.",
+  },
+  {
+    heading: "Three habits",
+    body: "Read the portfolio stage: execution, engineering, conceptual. They are not synonyms. Ask where the water comes from before you ask the grade. And separate a pilot in Lima from a pit in the altiplano. Sixty-four billion dollars is the size of the argument. It is not the size of the pour.",
+  },
+];
+
+const PE_PROJECTS: Project[] = [
+  {
+    id: "quellaveco",
+    name: "Quellaveco",
+    company: "Anglo American",
+    ticker: "LSE:AAL",
+    state: "MOQ",
+    place: "Moquegua",
+    commodities: ["Copper"],
+    stage: "Operating",
+    capital: "Expansion still a study",
+    heard: true,
+    stillOpen: "A larger plant, not the proof that a mine can be finished",
+    note: "First concentrate in 2022. The recent proof that Peru can complete a new copper mine. The ministry’s book still carries an expansion, about US$850 million, at pre-feasibility. Quote the mine that ships, not the study beside it.",
+  },
+  {
+    id: "tia-maria",
+    name: "Tía María",
+    company: "Southern Copper",
+    ticker: "NYSE:SCCO",
+    state: "AQP",
+    place: "Tambo Valley, Arequipa",
+    commodities: ["Copper"],
+    stage: "FID taken",
+    capital: "US$1.8bn",
+    heard: true,
+    stillOpen: "Concrete that survives a season of protest",
+    note: "The 2026 portfolio marks it in execution, with a start hoped for 2027. Farmers in the Tambo Valley have spent more than a decade saying the water is not spare. A line that says “execution” has been printed before. Believe the pour, not the year.",
+  },
+  {
+    id: "zafranal",
+    name: "Zafranal",
+    company: "Teck and Mitsubishi",
+    state: "AQP",
+    place: "Arequipa",
+    commodities: ["Copper", "Gold"],
+    stage: "DFS",
+    capital: "US$1.9bn",
+    heard: true,
+    stillOpen: "A board cheque, not only detailed engineering",
+    note: "Detailed engineering in the 2026 portfolio. First production is put at 2029. Copper and gold, and a project that has tried to answer the water argument that stalled its neighbour. Engineering is not drawdown.",
+  },
+  {
+    id: "michiquillay",
+    name: "Michiquillay",
+    company: "Southern Copper",
+    ticker: "NYSE:SCCO",
+    state: "CAJ",
+    place: "Cajamarca",
+    commodities: ["Copper"],
+    stage: "Conceptual",
+    capital: "US$2.5bn",
+    heard: true,
+    stillOpen: "A concept with a year no earlier than 2032",
+    note: "Southern’s large undeveloped copper. The ministry marks it conceptual, with a start no earlier than 2032. Cajamarca remembers projects that were also, once, only a concept.",
+  },
+  {
+    id: "la-granja",
+    name: "La Granja",
+    company: "First Quantum and Rio Tinto",
+    state: "CAJ",
+    place: "Cajamarca",
+    commodities: ["Copper"],
+    stage: "Conceptual",
+    capital: "US$2.4bn",
+    heard: true,
+    stillOpen: "A year the ministry will actually print",
+    note: "About US$2.4 billion, still conceptual, and no start-year in the 2026 portfolio. One of the larger undeveloped copper inventories in the country. An inventory is not a schedule.",
+  },
+  {
+    id: "galeno",
+    name: "Galeno",
+    company: "Lumina Copper",
+    state: "CAJ",
+    place: "Cajamarca",
+    commodities: ["Copper", "Molybdenum", "Gold"],
+    stage: "PFS",
+    capital: "US$3.5bn",
+    heard: true,
+    stillOpen: "A sentence that contains the word construction",
+    note: "Minmetals and Jiangxi, through Lumina Copper. Pre-feasibility, about US$3.5 billion. Through 2026 the owners have been moving environmental and technical studies. There is still no construction decision. The minister named it; the cartera has not promoted it to execution.",
+  },
+  {
+    id: "falchani",
+    name: "Falchani",
+    company: "American Lithium",
+    ticker: "NASDAQ:AMLI",
+    state: "PUN",
+    place: "Puno",
+    commodities: ["Lithium"],
+    stage: "Scoping",
+    heard: true,
+    stillOpen: "A feasibility study, and a permit on the plateau",
+    note: "Volcanic lithium, not a brine and not spodumene. In September 2026 the company said its pilot plant in Lima is installed and running. Bench tests on that equipment recovered about 88.7 percent of the lithium, against 80 percent in the February 2024 preliminary assessment. The pilot is meant to treat six to ten tonnes. That is not a mine.",
+  },
+  {
+    id: "corani",
+    name: "Corani",
+    company: "Bear Creek Mining",
+    state: "PUN",
+    place: "Puno",
+    commodities: ["Silver"],
+    stage: "DFS",
+    capital: "US$579m",
+    heard: true,
+    stillOpen: "A start hoped for 2028, still on paper",
+    note: "Silver, in detailed engineering in the 2026 portfolio, under US$600 million, with a start hoped for 2028. Further along than the Cajamarca concepts. Not yet a pour, and not a battery-metal fashion.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -766,6 +909,7 @@ export const EPISODES: Episode[] = [
     disclaimer:
       "Figures are compiled from public reports through September 2026 — the major projects list, Austrade’s prospectus, and company statements. Not a recommendation, and not a substitute for the primary documents.",
     regionLabel: "State",
+    regionAll: "states",
     emptyHint: "Nothing in the book matches that. Clear a filter, or try “Nolans”.",
     stats: [
       { label: "Major projects", value: "130" },
@@ -791,6 +935,7 @@ export const EPISODES: Episode[] = [
     disclaimer:
       "Figures are compiled from public notices through September 2026 — the Kahatagaha expression of interest, company results, and the state miners’ own product notes. Not a recommendation, and not a substitute for the tender or the study.",
     regionLabel: "Province",
+    regionAll: "provinces",
     emptyHint: "Nothing in the book matches that. Clear a filter, or try “Kahatagaha”.",
     stats: [
       { label: "Vein output", value: "few kt" },
@@ -816,6 +961,7 @@ export const EPISODES: Episode[] = [
     disclaimer:
       "Figures are compiled from public notices through September 2026 — company results, the Reserve Bank approval reported this month, Mintek’s June note, and the miners’ own guidance. Not a recommendation, and not a substitute for the funding conditions or the nuclear licence.",
     regionLabel: "Province",
+    regionAll: "provinces",
     emptyHint: "Nothing in the book matches that. Clear a filter, or try “Platreef”.",
     stats: [
       { label: "PGM camp", value: "Bushveld" },
@@ -841,6 +987,7 @@ export const EPISODES: Episode[] = [
     disclaimer:
       "Figures are compiled from public notices through September 2026 — company studies, the September minerals law, and the miners’ own guidance. Not a recommendation, and not a substitute for the licence or the offtake.",
     regionLabel: "State",
+    regionAll: "states",
     emptyHint: "Nothing in the book matches that. Clear a filter, or try “Serra Verde”.",
     stats: [
       { label: "REE mines", value: "1" },
@@ -853,6 +1000,32 @@ export const EPISODES: Episode[] = [
     projects: BR_PROJECTS,
     defaultOpen: "serra-verde",
   },
+  {
+    id: "peru",
+    number: "05",
+    country: "Peru",
+    title: "The cartera",
+    kicker: "September 2026 · Episode 05",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-peru.mp3",
+    lede: "Episode five is Peru: a copper country that already ships, and a ministry book of 66 projects worth more than 64 billion dollars that mostly do not. Leo reads Tía María, the Cajamarca concepts, and a lithium pilot in Lima.",
+    disclaimer:
+      "Figures follow the mines ministry’s 2026 portfolio, company notes through September 2026, and the minister’s own list. Not a recommendation, and not a substitute for the water balance or the permit.",
+    regionLabel: "Department",
+    regionAll: "departments",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Tía María”.",
+    stats: [
+      { label: "In the cartera", value: "66" },
+      { label: "In this book", value: String(PE_PROJECTS.length) },
+      { label: "Portfolio", value: "$64bn" },
+    ],
+    transcript: PE_TRANSCRIPT,
+    commodities: ["Copper", "Gold", "Molybdenum", "Lithium", "Silver"],
+    regions: ["MOQ", "AQP", "CAJ", "PUN"],
+    projects: PE_PROJECTS,
+    defaultOpen: "tia-maria",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "brazil";
+export const DEFAULT_EPISODE_ID = "peru";

@@ -64,8 +64,8 @@ function Home() {
       </header>
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
-        <aside className="lg:sticky lg:top-4">
-          <div className="mb-3 flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Episode">
+        <aside className="min-w-0 lg:sticky lg:top-4">
+          <div className="mb-3 flex w-full gap-2 overflow-x-auto pb-1" role="group" aria-label="Episode">
             {EPISODES.map((item) => (
               <button
                 key={item.id}
@@ -88,7 +88,7 @@ function Home() {
           <p className="mt-3 text-xs leading-relaxed text-muted">{episode.disclaimer}</p>
         </aside>
 
-        <section aria-label="Projects">
+        <section className="min-w-0" aria-label="Projects">
           <div className="flex flex-col gap-3">
             <div className="relative">
               <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
@@ -113,7 +113,7 @@ function Home() {
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex flex-wrap gap-2" role="group" aria-label={episode.regionLabel}>
                 <Chip active={region === "All"} onClick={() => setRegion("All")}>
-                  All {episode.regionLabel === "State" ? "states" : "provinces"}
+                  All {episode.regionAll}
                 </Chip>
                 {episode.regions.map((item) => (
                   <Chip key={item} active={region === item} onClick={() => setRegion(item)}>
