@@ -1331,6 +1331,124 @@ const ID_PROJECTS: Project[] = [
   },
 ];
 
+const IN_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode ten. Tonight, India. A country that has decided critical minerals are a mission, and has the auction notices to prove it. It does not yet have most of the mines. I am Leo.",
+  },
+  {
+    heading: "The warehouse",
+    body: "Hindustan Zinc, in Rajasthan, is already one of the serious zinc and silver producers. Sukinda, in Odisha, is a chromite camp of real scale. IREL, the state company, has for decades taken a modest stream of rare earths out of monazite in the beach sands, with thorium looking over its shoulder. These are pits and plants. They are not a lithium industry, and they are not a magnet industry.",
+  },
+  {
+    heading: "Fifty-six blocks",
+    body: "In June the ministry counted 56 critical and strategic blocks successfully auctioned, out of 88 unique blocks offered. Above 63 percent. The seventh tranche added ten, and for the first time the Centre sold such blocks in Gujarat, Uttarakhand, and Telangana. Graphite, rare earths, vanadium, titanium, phosphate. Eleven exploration licences besides. An auction is a right to go and look. Thirty-two blocks did not clear. A failed bid is also information.",
+  },
+  {
+    heading: "Reasi",
+    body: "Lithium in a laterite, in Jammu and Kashmir. Not a brine, and not a spodumene. An earlier auction drew a poor room. Exploration continues this field season. A closer pass over Salal-Haimna has been described as about 3.3 million tonnes of lithium-bearing laterite. Bearing lithium is not lithium carbonate, and it is not a mine. The ministry has spoken of offering the block again.",
+  },
+  {
+    heading: "New metals, and abroad",
+    body: "Hindustan Zinc has picked up tungsten in Andhra Pradesh, potash in Rajasthan, and a rare-earth block at Nawatola in Uttar Pradesh, where it has spoken of neodymium. The chief executive told shareholders that within five years the firm should add about three new metals. None of those blocks is Rampura Agucha. KABIL, the overseas arm, holds an exploration arrangement for lithium brine in Catamarca, Argentina. That is a confession as much as a plan.",
+  },
+  {
+    heading: "Three habits",
+    body: "Count mines, not auction notices. When a tonne is announced in Kashmir, ask whether it is laterite or carbonate. And treat a block won by a zinc company as an option, not as a second Hindustan Zinc. Fifty-six blocks is a busy ministry. It is not a refinery.",
+  },
+];
+
+const IN_PROJECTS: Project[] = [
+  {
+    id: "rampura-agucha",
+    name: "Rampura Agucha",
+    company: "Hindustan Zinc",
+    ticker: "NSE:HINDZINC",
+    state: "RJ",
+    place: "Rajasthan",
+    commodities: ["Zinc", "Silver"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Not the new metals — the mine that already ships",
+    note: "The warehouse. One of the serious zinc and silver producers. Everything else Hindustan Zinc has picked up in the critical-mineral auctions should be read against this pit, not instead of it.",
+  },
+  {
+    id: "sukinda",
+    name: "Sukinda",
+    company: "Tata and other miners",
+    state: "OD",
+    place: "Odisha",
+    commodities: ["Chromite"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "A camp that already exists, beside a mission that does not",
+    note: "A chromite district of real scale. India is not waiting on an auction to know what Sukinda is. It is the other half of the ledger: metal that leaves, rather than a block that might.",
+  },
+  {
+    id: "irel",
+    name: "Beach-sand monazite",
+    company: "IREL (India)",
+    state: "OD",
+    place: "Odisha, Kerala, and Tamil Nadu coasts",
+    commodities: ["Rare earths", "Thorium"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "A magnet industry, which this stream is not",
+    note: "The state rare-earth circuit. A modest flow of rare earths from monazite in beach sand, under a nuclear eye because of the thorium. Operating, and not to be confused with a new rare-earth block that has only been won at auction.",
+  },
+  {
+    id: "reasi",
+    name: "Salal-Haimna",
+    company: "Still with the Geological Survey",
+    state: "JK",
+    place: "Reasi, Jammu and Kashmir",
+    commodities: ["Lithium"],
+    stage: "Exploration",
+    capital: "3.3 Mt of laterite",
+    heard: true,
+    stillOpen: "A bidder, and a noun that means carbonate",
+    note: "Lithium-bearing aluminous laterite, not a brine and not spodumene. An earlier auction drew a poor response. G2 work over 4.18 square kilometres has been described as about 3.29 million tonnes of lithium-bearing laterite. That is the rock, not the carbonate, and not a mine. The ministry has spoken of offering the block again.",
+  },
+  {
+    id: "nawatola",
+    name: "Nawatola",
+    company: "Hindustan Zinc",
+    ticker: "NSE:HINDZINC",
+    state: "UP",
+    place: "Uttar Pradesh",
+    commodities: ["Rare earths"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "A campaign, not a neodymium plant",
+    note: "A rare-earth block the company won and has spoken of in terms of neodymium. The chief executive’s line to shareholders — about three new metals in five years — is a strategy. This block is the work. It is not Rampura Agucha.",
+  },
+  {
+    id: "balepalyam",
+    name: "Balepalyam",
+    company: "Hindustan Zinc",
+    ticker: "NSE:HINDZINC",
+    state: "AP",
+    place: "Andhra Pradesh",
+    commodities: ["Tungsten"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "Drilling that would turn a win into a resource",
+    note: "The tungsten block in the same diversification. Won at auction. An auction receipt is not a concentrator.",
+  },
+  {
+    id: "catamarca",
+    name: "Catamarca brine",
+    company: "KABIL",
+    state: "AR",
+    place: "Catamarca, Argentina",
+    commodities: ["Lithium"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "A hole in Argentina, because the domestic book is thin",
+    note: "The state’s overseas arm, exploring lithium brine in Catamarca. Not an Indian mine. The existence of the arrangement is the point: New Delhi would prefer the metal at home, and has signed up to look for it somewhere else.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -1566,6 +1684,32 @@ export const EPISODES: Episode[] = [
     projects: ID_PROJECTS,
     defaultOpen: "weda-bay",
   },
+  {
+    id: "india",
+    number: "10",
+    country: "India",
+    title: "The auction",
+    kicker: "September 2026 · Episode 10",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-india.mp3",
+    lede: "Episode ten is India: a critical-minerals mission with 56 blocks auctioned and, in lithium and magnets, almost no mines. Leo reads Reasi as laterite, not carbonate, and a zinc company collecting options.",
+    disclaimer:
+      "The auction count is the Ministry of Mines, 23 June 2026: 56 blocks from 88 offered. Reasi’s tonnes are lithium-bearing laterite, not carbonate. Not a recommendation, and not a substitute for the resource statement.",
+    regionLabel: "Place",
+    regionAll: "places",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Reasi”.",
+    stats: [
+      { label: "Auctioned", value: "56" },
+      { label: "Offered", value: "88" },
+      { label: "In this book", value: String(IN_PROJECTS.length) },
+    ],
+    transcript: IN_TRANSCRIPT,
+    commodities: ["Zinc", "Silver", "Chromite", "Rare earths", "Thorium", "Lithium", "Tungsten"],
+    regions: ["RJ", "OD", "JK", "UP", "AP", "AR"],
+    projects: IN_PROJECTS,
+    defaultOpen: "reasi",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "indonesia";
+export const DEFAULT_EPISODE_ID = "india";
