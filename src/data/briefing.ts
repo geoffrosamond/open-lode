@@ -1155,6 +1155,100 @@ const RE_PROJECTS: Project[] = [
   },
 ];
 
+const PH_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode eight. Tonight, the Philippines. Second in the world for mined nickel, and still, in the main, a seller of ore. The copper that would change the country’s cheque is mostly unbuilt. I am Leo.",
+  },
+  {
+    heading: "The laterite",
+    body: "Nickel laterite in Caraga, in the northeast of Mindanao, and on Palawan. The ore goes, in large part, to other people’s smelters — China first, and now Indonesian plants looking for feed. Two plants on the islands already do the harder thing. Coral Bay, on Palawan, and Taganito, in Surigao del Norte. High-pressure acid leach: nickel, and a cobalt by-product, rather than a lump of red earth on a barge. They are the exception. They are not the trade.",
+  },
+  {
+    heading: "Silangan",
+    body: "Philex, in Surigao del Norte. Most of the mine infrastructure was reported complete by late June. The processing plant was still being handed over. Commercial operations had been hoped for the first quarter, then for this third quarter. We are at the end of that quarter. Hope is not a start-up. Padcal, the old mine in Benguet, is what Silangan is meant to outlive.",
+  },
+  {
+    heading: "Tampakan",
+    body: "One of the largest undeveloped copper and gold deposits, in South Cotabato. Glencore left in 2015 after the province banned open pits. The ban was lifted in 2022. A start has since been spoken of for 2028. A shareholder vote on a consolidation was set for 14 September. A briefing will not invent the result. A headline with 200 billion dollars in it is a guess at the metal in the ground, not the cost of building the mine.",
+  },
+  {
+    heading: "King-king, and the policy",
+    body: "King-king, in Davao de Oro, was described by the government in June as having reached a definitive study. A study is the right stage to believe. There is not, tonight, an ore-export ban of the Indonesian kind. There is a debate, and demand from smelters that are not Filipino. Exporting the laterite is cash this year. It is also a decision to let someone else make the sulphate, the matte, and the cathode. Two leach plants do not make a policy.",
+  },
+  {
+    heading: "Three habits",
+    body: "Ask whether the tonne is ore on a ship, or a leach product from a plant that exists. Ask whether Silangan has poured, not whether the quarter was named. And when Tampakan is priced in hundreds of billions, ask if that number is a cheque or a fantasy of the orebody.",
+  },
+];
+
+const PH_PROJECTS: Project[] = [
+  {
+    id: "taganito",
+    name: "Taganito HPAL",
+    company: "Nickel Asia and Sumitomo",
+    ticker: "PSE:NIKL",
+    state: "SDN",
+    place: "Surigao del Norte",
+    commodities: ["Nickel", "Cobalt"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "A policy, not another barge of ore",
+    note: "High-pressure acid leach. Nickel and a cobalt by-product, on the island, rather than red laterite on a ship. One of two plants that prove the chemistry can be done here. Two plants are not a national downstream industry.",
+  },
+  {
+    id: "coral-bay",
+    name: "Coral Bay",
+    company: "Nickel Asia and Sumitomo",
+    ticker: "PSE:NIKL",
+    state: "PLW",
+    place: "Palawan",
+    commodities: ["Nickel", "Cobalt"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "The same lesson, on the other island",
+    note: "The other operating HPAL plant. The ore trade — Caraga laterite to China, and increasingly toward Indonesian smelters — is still the larger story. Coral Bay is the exception a careful reader keeps in view.",
+  },
+  {
+    id: "silangan",
+    name: "Silangan",
+    company: "Philex Mining",
+    ticker: "PSE:PX",
+    state: "SDN",
+    place: "Surigao del Norte",
+    commodities: ["Copper", "Gold"],
+    stage: "FID taken",
+    heard: true,
+    stillOpen: "A plant handover, not a named quarter",
+    note: "By late June 2026 most of the mine infrastructure was reported complete, and the processing plant was still being turned over by the contractor. First commercial ore had slipped from the first quarter to a hope of the third. This briefing does not treat that hope as a pour. It is meant to outlive Padcal, the old Benguet mine, which is still the fact.",
+  },
+  {
+    id: "tampakan",
+    name: "Tampakan",
+    company: "Philippine owners, after Glencore",
+    state: "SCT",
+    place: "South Cotabato",
+    commodities: ["Copper", "Gold"],
+    stage: "Decision pending",
+    capital: "Not the $200bn headline",
+    heard: true,
+    stillOpen: "A build, a watershed, and a vote this month",
+    note: "One of the largest undeveloped copper-gold deposits. Glencore left in 2015 after a provincial open-pit ban; the ban was lifted in 2022. A start has been spoken of for 2028, and a shareholder vote on a consolidation was set for 14 September 2026. The two-hundred-billion-dollar figure in headlines is a guess at metal in the ground, not a construction cheque. The watershed has not become a footnote.",
+  },
+  {
+    id: "king-king",
+    name: "King-king",
+    company: "As pitched by the state",
+    state: "DDO",
+    place: "Davao de Oro",
+    commodities: ["Copper", "Gold"],
+    stage: "DFS",
+    heard: true,
+    stillOpen: "A study the government is willing to show",
+    note: "In June 2026 the Department of Trade, at a Singapore conference, described King-king as having reached a definitive feasibility study, beside Silangan and Tampakan. A study is the stage to believe. Not a pour, and not a cheque.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -1338,6 +1432,32 @@ export const EPISODES: Episode[] = [
     projects: RE_PROJECTS,
     defaultOpen: "molymet",
   },
+  {
+    id: "philippines",
+    number: "08",
+    country: "Philippines",
+    title: "The laterite",
+    kicker: "September 2026 · Episode 08",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-philippines.mp3",
+    lede: "Episode eight is the Philippines: second in mined nickel, and still mostly a seller of ore. Leo reads the two leach plants that exist, Silangan’s slipped start, and Tampakan — where a huge headline is not a cheque.",
+    disclaimer:
+      "Figures follow company statements and the government’s June 2026 investor pitch, through this month. Not a recommendation. A named quarter is not a pour, and a gross metal value is not a capital cost.",
+    regionLabel: "Province",
+    regionAll: "provinces",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Silangan”.",
+    stats: [
+      { label: "Mined nickel", value: "2nd" },
+      { label: "In this book", value: String(PH_PROJECTS.length) },
+      { label: "HPAL plants", value: "2" },
+    ],
+    transcript: PH_TRANSCRIPT,
+    commodities: ["Nickel", "Cobalt", "Copper", "Gold"],
+    regions: ["SDN", "PLW", "SCT", "DDO"],
+    projects: PH_PROJECTS,
+    defaultOpen: "silangan",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "rhenium";
+export const DEFAULT_EPISODE_ID = "philippines";
