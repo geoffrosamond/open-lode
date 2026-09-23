@@ -1449,6 +1449,82 @@ const IN_PROJECTS: Project[] = [
   },
 ];
 
+const MM_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode eleven. Tonight, Myanmar. A country that appears in the rare-earth and tin tables, and does not appear, in any ordinary sense, as a place with a mine plan and a separator. I am Leo.",
+  },
+  {
+    heading: "Heavy clay, no plant",
+    body: "Dysprosium and terbium, from ionic clay, leached on hillsides near the Chinese border. The separated oxide is not made in the country. In 2024 the trade into China was about 27,000 tonnes, rare-earth oxide equivalent. For years before that, Myanmar supplied the greater part of China’s rare-earth imports. Export value peaked in 2023 at about 1.4 billion dollars. China does the separating.",
+  },
+  {
+    heading: "Who holds the hill",
+    body: "In late 2024 the Kachin Independence Army took most of the Kachin mines from a militia aligned with the armed forces. Shipments collapsed in the first quarter of 2025, and then resumed. A line in the Chinese customs record is not a licence from Naypyidaw. It is evidence that a truck crossed a border. By December 2025, collection pools were visible in country held by the Ta’ang National Liberation Army in northern Shan. A satellite image is not a production table.",
+  },
+  {
+    heading: "Tin, and a named pit",
+    body: "The Wa authorities suspended Man Maw in 2023, and China’s imports of Burmese tin ore fell hard for two years. In the first half of 2026 China took about 44,000 tonnes of tin ore and concentrate from Myanmar, more than in the whole of 2025. That figure is ore, not metal. The Monywa complex in Sagaing is a copper pit with a name, backed by Chinese capital. The hillside leach often is not.",
+  },
+  {
+    heading: "Three habits",
+    body: "Ask where the oxide is separated. If the answer is across the border, you own a clay and a road, not a rare-earth industry. Ask who can stop the truck. And when a tin number is quoted, ask whether it is ore or metal, and whether it survived a year in which the Wa told the pits to stop.",
+  },
+];
+
+const MM_PROJECTS: Project[] = [
+  {
+    id: "kachin-clay",
+    name: "Kachin ionic clay",
+    company: "Kachin Independence Organisation",
+    state: "KCH",
+    place: "Kachin State, on the China border",
+    commodities: ["Rare earths"],
+    stage: "Operating",
+    capital: "27 kt REO, 2024",
+    heard: true,
+    stillOpen: "A separator, which is not in the country",
+    note: "Heavy rare earths, dysprosium and terbium, leached from ionic clay. About 27,000 tonnes of rare-earth oxide equivalent went to China in 2024. The Kachin army took most of these mines in late 2024. Exports collapsed, then resumed. There is no separation plant on this side of the border. Customs is not a licence from Naypyidaw.",
+  },
+  {
+    id: "shan-leach",
+    name: "Northern Shan leach",
+    company: "In Ta’ang-held country",
+    state: "SHN",
+    place: "Northern Shan State",
+    commodities: ["Rare earths"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "A customs line, not a satellite image",
+    note: "Collection pools, the signature of this leaching, were visible by December 2025. A leach takes months, so some material may already be moving. This briefing will not promote a satellite image into a production table.",
+  },
+  {
+    id: "man-maw",
+    name: "Man Maw",
+    company: "Wa authorities",
+    state: "WST",
+    place: "Wa Self-Administered Region",
+    commodities: ["Tin"],
+    stage: "Operating",
+    capital: "44 kt ore, H1 2026",
+    heard: true,
+    stillOpen: "Whether the pit is back, or only the stockpile",
+    note: "Suspended by the Wa authorities in 2023. China’s imports of Burmese tin ore then fell for two years. In the first half of 2026 China took about 44,000 tonnes of tin ore and concentrate from Myanmar, more than in all of 2025. Ore, not contained metal. A resumed border is not a published reserve.",
+  },
+  {
+    id: "monywa",
+    name: "Monywa",
+    company: "Chinese-backed copper complex",
+    state: "SAG",
+    place: "Sagaing",
+    commodities: ["Copper"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Ordinary only on the flow-sheet",
+    note: "The pit in this country that looks most like the others in the series: a named copper complex, with Chinese capital. Not a quiet jurisdiction. Included so the hillside leach is not mistaken for the whole of the geology.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -1710,6 +1786,32 @@ export const EPISODES: Episode[] = [
     projects: IN_PROJECTS,
     defaultOpen: "reasi",
   },
+  {
+    id: "myanmar",
+    number: "11",
+    country: "Myanmar",
+    title: "The border",
+    kicker: "September 2026 · Episode 11",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-myanmar.mp3",
+    lede: "Episode eleven is Myanmar: heavy rare earths and tin that show up in China’s customs book, and almost nowhere else. Leo reads who holds the Kachin hills, and a tin figure that is ore, not metal.",
+    disclaimer:
+      "The 27,000 tonnes are rare-earth oxide equivalent exported to China in 2024, as compiled by the US Geological Survey. The tin figure is Chinese customs for ore and concentrate in the first half of 2026, reported by Fastmarkets on 22 September. Control of the ground changes. Not a recommendation.",
+    regionLabel: "Place",
+    regionAll: "places",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Kachin”.",
+    stats: [
+      { label: "REE to China", value: "27 kt" },
+      { label: "That year", value: "2024" },
+      { label: "Tin ore, H1", value: "44 kt" },
+    ],
+    transcript: MM_TRANSCRIPT,
+    commodities: ["Rare earths", "Tin", "Copper"],
+    regions: ["KCH", "SHN", "WST", "SAG"],
+    projects: MM_PROJECTS,
+    defaultOpen: "kachin-clay",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "india";
+export const DEFAULT_EPISODE_ID = "myanmar";
