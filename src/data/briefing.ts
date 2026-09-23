@@ -364,8 +364,8 @@ export type Episode = {
   regions: readonly string[];
   projects: Project[];
   defaultOpen: string;
-  /** Country briefings, or an element special named with its symbol. */
-  kind?: "country" | "element";
+  /** Country briefings, an element special, or the smart-money desk. */
+  kind?: "country" | "element" | "money";
   symbol?: string;
 };
 
@@ -2002,8 +2002,8 @@ const RECORDED: Episode[] = [
   {
     id: "the-desk",
     number: "End",
-    country: "The desk",
-    kind: "country",
+    country: "The smart money",
+    kind: "money",
     title: "Where the money is",
     kicker: "September 2026 · Finale",
     voice: "Leo",
@@ -2030,4 +2030,4 @@ const RECORDED: Episode[] = [
 
 export const EPISODES: Episode[] = [...RECORDED, ...(SHELF as Episode[])];
 
-export const DEFAULT_EPISODE_ID = "the-desk";
+export const DEFAULT_EPISODE_ID = "australia";

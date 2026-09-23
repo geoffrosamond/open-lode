@@ -14,7 +14,7 @@ function kindOf(item: Episode) {
 function Home() {
   const [episodeId, setEpisodeId] = useState(DEFAULT_EPISODE_ID);
   const episode = EPISODES.find((item) => item.id === episodeId) ?? EPISODES[0];
-  const [shelf, setShelf] = useState<"country" | "element" | "chains">(kindOf(episode));
+  const [shelf, setShelf] = useState<"country" | "element" | "chains" | "money">("country");
   const [chainId, setChainId] = useState(CHAINS[0].id);
   const chain = CHAINS.find((item) => item.id === chainId) ?? CHAINS[0];
   const exploring = shelf === "chains";
@@ -36,6 +36,19 @@ function Home() {
     setOpenId(next.defaultOpen);
   }
 
+  function selectShelf(next: "country" | "element" | "chains" | "money") {
+    setShelf(next);
+    setEpisodeQuery("");
+    if (next === "money") {
+      chooseEpisode("the-desk");
+      return;
+    }
+    if ((next === "country" || next === "element") && kindOf(episode) !== next) {
+      const first = EPISODES.find((item) => kindOf(item) === next);
+      if (first) chooseEpisode(first.id);
+    }
+  }
+
   const listed = useMemo(() => {
     const q = episodeQuery.trim().toLowerCase();
     const items = EPISODES.filter((item) => kindOf(item) === shelf).filter((item) => {
@@ -44,9 +57,6 @@ function Home() {
         .toLowerCase()
         .includes(q);
     });
-    if (shelf === "country") {
-      items.sort((a, b) => Number(b.id === "the-desk") - Number(a.id === "the-desk"));
-    }
     return items;
   }, [shelf, episodeQuery]);
 
@@ -93,33 +103,30 @@ function Home() {
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
         <aside className="min-w-0 lg:sticky lg:top-4">
-          <div className="mb-3 flex gap-2" role="group" aria-label="Shelf">
+          <div className="mb-3 flex flex-wrap gap-2" role="group" aria-label="Shelf">
             <Chip
               active={shelf === "country"}
-              onClick={() => {
-                setShelf("country");
-                setEpisodeQuery("");
-              }}
+              onClick={() => selectShelf("country")}
             >
               Countries
             </Chip>
             <Chip
               active={shelf === "element"}
-              onClick={() => {
-                setShelf("element");
-                setEpisodeQuery("");
-              }}
+              onClick={() => selectShelf("element")}
             >
               Elements
             </Chip>
             <Chip
               active={shelf === "chains"}
-              onClick={() => {
-                setShelf("chains");
-                setEpisodeQuery("");
-              }}
+              onClick={() => selectShelf("chains")}
             >
               Chains
+            </Chip>
+            <Chip
+              active={shelf === "money"}
+              onClick={() => selectShelf("money")}
+            >
+              Smart money
             </Chip>
           </div>
           <div className="relative mb-2">
@@ -128,9 +135,23 @@ function Home() {
               value={episodeQuery}
               onChange={(event) => setEpisodeQuery(event.target.value)}
               placeholder={
-                exploring ? "Find a chain" : shelf === "element" ? "Find an element or a symbol" : "Find a country"
+                shelf === "chains"
+                  ? "Find a chain"
+                  : shelf === "element"
+                    ? "Find an element or a symbol"
+                    : shelf === "money"
+                      ? "Find the note"
+                      : "Find a country"
               }
-              aria-label={exploring ? "Find a chain" : shelf === "element" ? "Find an element" : "Find a country"}
+              aria-label={
+                shelf === "chains"
+                  ? "Find a chain"
+                  : shelf === "element"
+                    ? "Find an element"
+                    : shelf === "money"
+                      ? "Find the note"
+                      : "Find a country"
+              }
               className="w-full rounded-full border border-rule bg-card py-2 pr-4 pl-10 text-sm text-ink placeholder:text-muted"
             />
           </div>
