@@ -67,7 +67,7 @@ function Home() {
         <h1 className="m-0">
           <img
             src="/blog-header-logo.jpg"
-            alt="Open Lode — a geological prospectus"
+            alt="Open Lode — a geographical elements blog"
             className="w-full rounded-2xl"
           />
         </h1>
