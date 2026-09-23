@@ -65,7 +65,7 @@ function Home() {
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
         <aside className="lg:sticky lg:top-4">
-          <div className="mb-3 flex gap-2" role="group" aria-label="Episode">
+          <div className="mb-3 flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Episode">
             {EPISODES.map((item) => (
               <button
                 key={item.id}
@@ -73,14 +73,14 @@ function Home() {
                 aria-pressed={item.id === episode.id}
                 onClick={() => chooseEpisode(item.id)}
                 className={
-                  "min-h-11 flex-1 rounded-full px-3 py-2 text-left text-sm transition-colors " +
+                  "min-h-11 shrink-0 rounded-full px-4 py-2 text-left text-sm transition-colors " +
                   (item.id === episode.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
                 }
               >
                 <span className="block text-xs font-semibold tracking-widest uppercase">
-                  Episode {item.number}
+                  {item.number}
                 </span>
-                <span className="font-display text-lg leading-tight">{item.country}</span>
+                <span className="font-display text-base leading-tight">{item.country}</span>
               </button>
             ))}
           </div>
@@ -194,7 +194,7 @@ function LedgerRow({
         onClick={onToggle}
         className="flex w-full items-start gap-3 py-4 text-left"
       >
-        <span className="mt-0.5 w-10 shrink-0 font-display text-lg text-copper">{project.state}</span>
+        <span className="mt-0.5 w-12 shrink-0 font-display text-lg text-copper">{project.state}</span>
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <span className="font-display text-xl leading-tight">{project.name}</span>

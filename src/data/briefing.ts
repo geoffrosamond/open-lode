@@ -471,6 +471,134 @@ const SRI_PROJECTS: Project[] = [
   },
 ];
 
+const SA_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode three. We have walked Australia, then Sri Lanka. Tonight, South Africa — which is not a junior’s prospectus. It is already the world’s warehouse for platinum, chrome, and manganese. The question is what is still open. I am Leo.",
+  },
+  {
+    heading: "The warehouse",
+    body: "The Bushveld, north of Pretoria and out toward Rustenburg, is the largest platinum-group and chrome province on earth. The Kalahari, in the Northern Cape, holds the largest share of the world’s manganese. Richards Bay, on the KwaZulu-Natal coast, already separates mineral sands and makes titanium slag. Those are mines, plants, and railways. They are constrained by power, ports, and price. They are not waiting for a maiden resource.",
+  },
+  {
+    heading: "Platreef",
+    body: "Platreef, in Limpopo, is Ivanhoe’s platinum, palladium, rhodium, nickel, copper, and gold mine. The first concentrate was produced in November 2025. Through this year the phase-one plant has been fed mostly with development ore while the orebody is opened. Phase two broke ground in April. A larger concentrator, about 3.3 million tonnes a year, is aimed at something like 450,000 ounces of platinum-group metals and gold once it mills, with a target around the end of 2027. Phase one is a ramp-up. Phase two is still a construction site.",
+  },
+  {
+    heading: "Steenkampskraal",
+    body: "Steenkampskraal, in the Western Cape, was opened by Anglo American in 1952 for thorium. It is one of the highest-grade rare-earth and thorium deposits known, and it slept for decades. It has been brought back with approvals from the nuclear regulator and the mines department. The Industrial Development Corporation has funded a first processing plant, and construction has been underway. The operators have spoken of commissioning around August this year, and of first shipments before the year is out. Mintek has produced a high-purity mixed rare-earth oxalate with them — a laboratory milestone, not yet a cargo. Strategic investors are still in due diligence.",
+  },
+  {
+    heading: "Phalaborwa",
+    body: "Phalaborwa is Rainbow Rare Earths, and it is not a mine in the ordinary sense. Two stacks of phosphogypsum, waste from the old phosphate works: about 35 million tonnes at under half a percent total rare earths. The chemistry has already cracked the mineral. A definitive study has been expected before the end of this year, with first production spoken of for 2028. A US development-finance commitment, through TechMet, of 50 million dollars has been kept on the table. A commitment is not a plant.",
+  },
+  {
+    heading: "Prieska",
+    body: "Prieska, in the Northern Cape, is copper and zinc: Orion Minerals. This month the Reserve Bank approved the cross-border piece of a funding arrangement with Glencore — 250 million US dollars for construction and start-up, once conditions are met. First concentrate is put at about thirteen months after the money is actually there. Approval of an agreement is not drawdown. Okiep, the older copper camp nearby, is the earlier sibling. Do not merge them.",
+  },
+  {
+    heading: "Three habits",
+    body: "Separate the warehouse from the prospectus. Platinum, chrome, and manganese are already industries. Ask whether a rare-earth tonne is monazite from a mine, or a recovery from a gypsum stack. And ask what has actually been signed — an IDC tranche, a Reserve Bank approval, a laboratory oxalate — before you call it production. Read the funding conditions and the nuclear licence, not merely a pleasant voice after dinner.",
+  },
+];
+
+const SA_PROJECTS: Project[] = [
+  {
+    id: "platreef",
+    name: "Platreef",
+    company: "Ivanhoe Mines",
+    ticker: "TSX:IVN",
+    state: "LP",
+    place: "Mokopane, Limpopo",
+    commodities: ["PGMs", "Nickel", "Copper"],
+    stage: "Operating",
+    capital: "Phase 2 under build",
+    heard: true,
+    stillOpen: "The ramp-up, then the phase-two concentrator",
+    note: "First concentrate in November 2025. Phase one has been campaigning development ore while underground mining opens. Phase two broke ground in April 2026: a 3.3 million tonne-a-year concentrator, with a company target near the end of 2027 and a much larger ounce number than phase one. Quote the ramp, not the destination.",
+  },
+  {
+    id: "steenkampskraal",
+    name: "Steenkampskraal",
+    company: "Steenkampskraal Monazite Mine",
+    state: "WC",
+    place: "Near Vanrhynsdorp, Western Cape",
+    commodities: ["Rare earths", "Thorium"],
+    stage: "FID taken",
+    capital: "IDC phase-one plant",
+    heard: true,
+    stillOpen: "Commissioning, offtake, and further investors",
+    note: "Among the highest-grade rare-earth and thorium deposits known. Anglo American mined it for thorium from 1952. Brought off care and maintenance with nuclear-regulator and mines-department approvals. The IDC has funded the first processing plant; construction has been underway, with a company hope of shipments before the end of 2026. In June, Mintek and the mine reported a high-purity mixed rare-earth oxalate in the laboratory. Investors are still in due diligence. Thorium is not a footnote.",
+  },
+  {
+    id: "phalaborwa",
+    name: "Phalaborwa",
+    company: "Rainbow Rare Earths",
+    ticker: "LSE:RBW",
+    state: "LP",
+    place: "Phalaborwa, Limpopo",
+    commodities: ["Rare earths"],
+    stage: "DFS",
+    capital: "US$50m DFC via TechMet",
+    heard: true,
+    stillOpen: "The definitive study, then a plant",
+    note: "Two phosphogypsum stacks, about 35 million tonnes at 0.44% total rare-earth oxides — waste from historic phosphate production, already chemically cracked. Not a new pit. A definitive study has been expected before the end of 2026, with first production spoken of for 2028. The US development-finance commitment is not yet a constructed plant.",
+  },
+  {
+    id: "prieska",
+    name: "Prieska",
+    company: "Orion Minerals",
+    ticker: "ASX:ORN",
+    state: "NC",
+    place: "Prieska, Northern Cape",
+    commodities: ["Copper", "Zinc"],
+    stage: "Decision pending",
+    capital: "US$250m, conditions remain",
+    heard: true,
+    stillOpen: "Drawdown, then about thirteen months to concentrate",
+    note: "On 17 September 2026 the Reserve Bank approved the cross-border piece of Orion’s Glencore-linked funding: US$250 million for construction and start-up once conditions are met, with up to US$50 million available earlier for initial works. First copper and zinc concentrate is guided about thirteen months after funding is actually available. Bank approval is not drawdown.",
+  },
+  {
+    id: "okiep",
+    name: "Okiep",
+    company: "Orion Minerals",
+    ticker: "ASX:ORN",
+    state: "NC",
+    place: "Okiep copper district, Northern Cape",
+    commodities: ["Copper"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "A study that can stand apart from Prieska",
+    note: "The older copper camp, and Orion’s earlier sibling to Prieska. Do not merge the two in a single sentence or a single cheque.",
+  },
+  {
+    id: "tshipi",
+    name: "Tshipi",
+    company: "Jupiter Mines and partners",
+    ticker: "ASX:JMS",
+    state: "NC",
+    place: "Hotazel, Kalahari, Northern Cape",
+    commodities: ["Manganese"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Rail and port, not the ore",
+    note: "One of the clearer private manganese mines in the Kalahari, the district that holds the largest share of the world’s manganese. The rock is not the constraint. The railway and the port are.",
+  },
+  {
+    id: "richards-bay",
+    name: "Richards Bay",
+    company: "Richards Bay Minerals",
+    ticker: "Rio Tinto",
+    state: "KZN",
+    place: "Richards Bay, KwaZulu-Natal",
+    commodities: ["Ilmenite", "Rutile", "Zircon"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Continuity: community, security, and the grid",
+    note: "Mineral sands that already go past a bag of ilmenite into titanium slag. The lesson from across the Indian Ocean: South Africa’s constraint here has been whether the plant keeps running, not whether the sand exists.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -522,6 +650,31 @@ export const EPISODES: Episode[] = [
     projects: SRI_PROJECTS,
     defaultOpen: "kahatagaha",
   },
+  {
+    id: "south-africa",
+    number: "03",
+    country: "South Africa",
+    title: "The warehouse",
+    kicker: "September 2026 · Episode 03",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-south-africa.mp3",
+    lede: "Episode three is South Africa: a country that already sells platinum, chrome, and manganese. Leo reads what is still open — Platreef’s ramp-up, two rare-earth paths, and a copper cheque that is not yet drawn.",
+    disclaimer:
+      "Figures are compiled from public notices through September 2026 — company results, the Reserve Bank approval reported this month, Mintek’s June note, and the miners’ own guidance. Not a recommendation, and not a substitute for the funding conditions or the nuclear licence.",
+    regionLabel: "Province",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Platreef”.",
+    stats: [
+      { label: "PGM camp", value: "Bushveld" },
+      { label: "In this book", value: String(SA_PROJECTS.length) },
+      { label: "Manganese", value: "Kalahari" },
+    ],
+    transcript: SA_TRANSCRIPT,
+    commodities: ["PGMs", "Nickel", "Copper", "Zinc", "Rare earths", "Thorium", "Manganese", "Ilmenite", "Rutile", "Zircon"],
+    regions: ["LP", "WC", "NC", "KZN"],
+    projects: SA_PROJECTS,
+    defaultOpen: "platreef",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "sri-lanka";
+export const DEFAULT_EPISODE_ID = "south-africa";
