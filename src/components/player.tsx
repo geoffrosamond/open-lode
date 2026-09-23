@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
-import { EPISODE, TRANSCRIPT } from "@/data/briefing";
+import type { Episode } from "@/data/briefing";
 
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -10,7 +10,7 @@ function formatTime(seconds: number) {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-export function Player() {
+export function Player({ episode }: { episode: Episode }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -66,13 +66,13 @@ export function Player() {
 
   return (
     <section className="rounded-card bg-panel text-paper p-5 shadow-sm sm:p-6" aria-label="Podcast">
-      <audio ref={audioRef} preload="metadata" src={EPISODE.src} />
+      <audio ref={audioRef} preload="metadata" src={episode.src} />
       <p className="text-xs font-semibold tracking-widest text-copper uppercase">
-        {EPISODE.kicker}
+        {episode.kicker}
       </p>
-      <h2 className="mt-2 text-3xl leading-none font-medium text-paper">{EPISODE.title}</h2>
+      <h2 className="mt-2 text-3xl leading-none font-medium text-paper">{episode.title}</h2>
       <p className="mt-2 text-sm text-paper/80">
-        Read by {EPISODE.voice}. {EPISODE.voiceNote}.
+        Read by {episode.voice}. {episode.voiceNote}.
       </p>
 
       <div className="mt-5 flex items-center gap-4">
@@ -127,7 +127,7 @@ export function Player() {
 
       {openScript ? (
         <div className="mt-4 max-h-80 space-y-4 overflow-y-auto pr-1 text-sm leading-relaxed text-paper/90">
-          {TRANSCRIPT.map((part) => (
+          {episode.transcript.map((part) => (
             <div key={part.heading}>
               <h3 className="text-base text-paper">{part.heading}</h3>
               <p className="mt-1">{part.body}</p>

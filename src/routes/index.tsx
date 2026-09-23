@@ -2,23 +2,36 @@ import { useMemo, useState, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { Player } from "@/components/player";
-import { COMMODITIES, PROJECTS, STATES, type Project } from "@/data/briefing";
+import { DEFAULT_EPISODE_ID, EPISODES, type Project } from "@/data/briefing";
 
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
+  const [episodeId, setEpisodeId] = useState(DEFAULT_EPISODE_ID);
+  const episode = EPISODES.find((item) => item.id === episodeId) ?? EPISODES[0];
   const [query, setQuery] = useState("");
   const [commodity, setCommodity] = useState<string>("All");
-  const [state, setState] = useState<string>("All");
+  const [region, setRegion] = useState<string>("All");
   const [onlyHeard, setOnlyHeard] = useState(false);
-  const [openId, setOpenId] = useState<string | null>("nolans");
+  const [openId, setOpenId] = useState<string | null>(episode.defaultOpen);
+
+  function chooseEpisode(id: string) {
+    const next = EPISODES.find((item) => item.id === id);
+    if (!next) return;
+    setEpisodeId(id);
+    setQuery("");
+    setCommodity("All");
+    setRegion("All");
+    setOnlyHeard(false);
+    setOpenId(next.defaultOpen);
+  }
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return PROJECTS.filter((project) => {
+    return episode.projects.filter((project) => {
       if (onlyHeard && !project.heard) return false;
       if (commodity !== "All" && !project.commodities.includes(commodity)) return false;
-      if (state !== "All" && project.state !== state) return false;
+      if (region !== "All" && project.state !== region) return false;
       if (!q) return true;
       const hay = [project.name, project.company, project.ticker, project.place, project.note]
         .filter(Boolean)
@@ -26,47 +39,53 @@ function Home() {
         .toLowerCase();
       return hay.includes(q);
     });
-  }, [query, commodity, state, onlyHeard]);
+  }, [episode, query, commodity, region, onlyHeard]);
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <header className="border-b border-rule pb-6">
         <p className="text-xs font-semibold tracking-widest text-copper uppercase">
-          Critical minerals · Australia
+          Critical minerals · {episode.country}
         </p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
             <h1 className="text-4xl leading-none font-medium sm:text-5xl">Open Lode</h1>
-            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
-              Projects that are public, advanced, and still open — for capital, offtake, or a
-              decision. The September briefing is read by Leo, an English gentleman.
-            </p>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">{episode.lede}</p>
           </div>
           <dl className="grid grid-cols-3 gap-x-4 gap-y-1 text-sm">
-            <div>
-              <dt className="text-muted">Major projects</dt>
-              <dd className="font-display text-2xl tabular-nums">130</dd>
-            </div>
-            <div>
-              <dt className="text-muted">In this book</dt>
-              <dd className="font-display text-2xl tabular-nums">{PROJECTS.length}</dd>
-            </div>
-            <div>
-              <dt className="text-muted">Midstream, ’26</dt>
-              <dd className="font-display text-2xl tabular-nums">29</dd>
-            </div>
+            {episode.stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="text-muted">{stat.label}</dt>
+                <dd className="font-display text-2xl tabular-nums">{stat.value}</dd>
+              </div>
+            ))}
           </dl>
         </div>
       </header>
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
         <aside className="lg:sticky lg:top-4">
-          <Player />
-          <p className="mt-3 text-xs leading-relaxed text-muted">
-            Figures are compiled from public reports through September 2026 — the major projects
-            list, Austrade’s prospectus, and company statements. Not a recommendation, and not a
-            substitute for the primary documents.
-          </p>
+          <div className="mb-3 flex gap-2" role="group" aria-label="Episode">
+            {EPISODES.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={item.id === episode.id}
+                onClick={() => chooseEpisode(item.id)}
+                className={
+                  "min-h-11 flex-1 rounded-full px-3 py-2 text-left text-sm transition-colors " +
+                  (item.id === episode.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
+                }
+              >
+                <span className="block text-xs font-semibold tracking-widest uppercase">
+                  Episode {item.number}
+                </span>
+                <span className="font-display text-lg leading-tight">{item.country}</span>
+              </button>
+            ))}
+          </div>
+          <Player key={episode.id} episode={episode} />
+          <p className="mt-3 text-xs leading-relaxed text-muted">{episode.disclaimer}</p>
         </aside>
 
         <section aria-label="Projects">
@@ -85,19 +104,19 @@ function Home() {
               <Chip active={commodity === "All"} onClick={() => setCommodity("All")}>
                 All minerals
               </Chip>
-              {COMMODITIES.map((item) => (
+              {episode.commodities.map((item) => (
                 <Chip key={item} active={commodity === item} onClick={() => setCommodity(item)}>
                   {item}
                 </Chip>
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <div className="flex flex-wrap gap-2" role="group" aria-label="State">
-                <Chip active={state === "All"} onClick={() => setState("All")}>
-                  All states
+              <div className="flex flex-wrap gap-2" role="group" aria-label={episode.regionLabel}>
+                <Chip active={region === "All"} onClick={() => setRegion("All")}>
+                  All {episode.regionLabel === "State" ? "states" : "provinces"}
                 </Chip>
-                {STATES.map((item) => (
-                  <Chip key={item} active={state === item} onClick={() => setState(item)}>
+                {episode.regions.map((item) => (
+                  <Chip key={item} active={region === item} onClick={() => setRegion(item)}>
                     {item}
                   </Chip>
                 ))}
@@ -114,7 +133,7 @@ function Home() {
 
           {visible.length === 0 ? (
             <p className="mt-6 rounded-card border border-dashed border-rule bg-card px-4 py-8 text-center text-sm text-muted">
-              Nothing in the book matches that. Clear a filter, or try “Nolans”.
+              {episode.emptyHint}
             </p>
           ) : (
             <ul className="mt-3 divide-y divide-rule border-y border-rule">

@@ -4,14 +4,15 @@ export type Stage =
   | "DFS"
   | "PFS"
   | "Operating"
-  | "Study reshaped";
+  | "Study reshaped"
+  | "Exploration";
 
 export type Project = {
   id: string;
   name: string;
   company: string;
   ticker?: string;
-  state: "WA" | "NT" | "QLD" | "NSW" | "VIC" | "SA";
+  state: string;
   place: string;
   commodities: string[];
   stage: Stage;
@@ -338,3 +339,189 @@ export const COMMODITIES = [
 ] as const;
 
 export const STATES = ["WA", "NT", "QLD", "NSW", "VIC", "SA"] as const;
+
+export type Episode = {
+  id: string;
+  number: string;
+  country: string;
+  title: string;
+  kicker: string;
+  voice: string;
+  voiceNote: string;
+  src: string;
+  lede: string;
+  disclaimer: string;
+  regionLabel: string;
+  emptyHint: string;
+  stats: { label: string; value: string }[];
+  transcript: { heading: string; body: string }[];
+  commodities: readonly string[];
+  regions: readonly string[];
+  projects: Project[];
+  defaultOpen: string;
+};
+
+const SRI_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode two. Last time we stayed in Australia. Tonight the book moves to Sri Lanka, and to the mineral the island actually has a right to be proud of: vein graphite. I am Leo.",
+  },
+  {
+    heading: "Vein, not flake",
+    body: "Sri Lanka does not produce graphite the way Mozambique or Madagascar do. Those are flake deposits, vast and dressed up in a plant. Sri Lankan graphite sits in veins, often of almost pure carbon, won from underground. Natural purity commonly sits above 90 percent, and the best of it is quoted near 99. The whole country’s output is a few thousand tonnes a year, not hundreds of thousands. Small tonnes. Extraordinary rock. And, inconveniently, most of it still leaves the island as a lump.",
+  },
+  {
+    heading: "Bogala",
+    body: "Bogala, in the Kegalle district, is the largest producer: an operating underground mine long tied to the German graphite house Graphit Kropfmühl. If you want a shipment of vein graphite this quarter, Bogala is the name on the bag. The open question is not whether the mine exists. It is whether anyone on the island will turn that carbon into a battery anode, or graphene, before it is sold in bulk.",
+  },
+  {
+    heading: "Kahatagaha",
+    body: "Kahatagaha, near Dodangaslanda in the North Western Province, is the deepest graphite mine in the country. About 102 acres, run by the state company Kahatagaha Graphite Lanka. In September 2025 the Cabinet set aside an earlier restructuring and approved a public-private partnership: explore the reserve properly, modernise the underground, process, and add value. Ownership of the graphite stays with the state company, and the jobs already underground are to be kept. In March 2026 the Ministry of Industry invited local and foreign investors to express interest. An invitation is not a partner. The government itself has said the mine has not had the technology to know the reserve at depth. That is the opening.",
+  },
+  {
+    heading: "Pencil marks",
+    body: "The Geological Survey has spoken of licences beyond the two old mines, including ground at Meegahakiula in Badulla, and in Vavuniya. A permit to reserve land is a pencil mark. It is not a second Bogala.",
+  },
+  {
+    heading: "The beaches",
+    body: "Pulmoddai, on the east coast near Trincomalee, is Lanka Mineral Sands, also a state company. The sand is unusually rich. The plant’s nameplate is on the order of 90,000 tonnes of ilmenite a year, with smaller lines of rutile, zircon, and a thin stream of monazite. Ilmenite and rutile are titanium minerals. Monazite is the rare-earth footnote, and it carries thorium, which is why a careful person does not call Pulmoddai a rare-earth mine. Sales are by government tender. Shipments have often sat well below the nameplate. Beside that beach sits Taprobane, Capital Metals’ project, with Sri Lankan partner Ambeon Capital. Results for the year to March 2026 say the engineering for a final investment decision is largely complete, and that stage-one capital has been cut to US$17.7 million. Approvals are still outstanding. The company talks of nine to twelve months of building once they arrive. Treat that as a calendar, not a fact in the bank.",
+  },
+  {
+    heading: "Three habits",
+    body: "What is actually open is a handful of projects, not one hundred and thirty. Ask whether the carbon is vein or flake. Ask what leaves the port: a lump, a concentrate, or a battery material. And ask who owns the ore after the partnership is signed. A few thousand tonnes of the best vein graphite in the world is a speciality. It is not a flood. Read the expression of interest, the company statements, and the tender — not merely a pleasant voice on an evening.",
+  },
+];
+
+const SRI_PROJECTS: Project[] = [
+  {
+    id: "kahatagaha",
+    name: "Kahatagaha",
+    company: "Kahatagaha Graphite Lanka",
+    state: "NW",
+    place: "Dodangaslanda, North Western Province",
+    commodities: ["Graphite"],
+    stage: "Decision pending",
+    capital: "PPP · state keeps the ore",
+    heard: true,
+    stillOpen: "A partner for depth, processing, and value-add",
+    note: "The deepest graphite mine in the country, about 102 acres, wholly state-owned. Cabinet approved a public-private partnership in September 2025: explore, modernise, process, and add value, while the graphite and existing jobs stay with the state company. The Ministry of Industry called for expressions of interest in March 2026. An invitation is not a signed partner, and the reserve at depth is still poorly known.",
+  },
+  {
+    id: "bogala",
+    name: "Bogala",
+    company: "Bogala Graphite Lanka",
+    state: "SG",
+    place: "Kegalle district, Sabaragamuwa",
+    commodities: ["Graphite"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Offtake, and processing on the island",
+    note: "The largest operating vein-graphite mine, long tied to German processor Graphit Kropfmühl. This is the bag you can actually buy. Most Sri Lankan graphite still leaves as lump. The opening is anode, graphene, or expandables — not another discovery headline.",
+  },
+  {
+    id: "pulmoddai",
+    name: "Pulmoddai",
+    company: "Lanka Mineral Sands",
+    state: "EP",
+    place: "Near Trincomalee, Eastern Province",
+    commodities: ["Ilmenite", "Rutile", "Zircon", "Monazite"],
+    stage: "Operating",
+    capital: "90kt ilmenite nameplate",
+    heard: true,
+    stillOpen: "Downstream pigment or metal, not a sale of the beach",
+    note: "State mineral-sands mine on unusually rich east-coast sand. Nameplate is on the order of 90,000 tonnes of ilmenite a year, plus rutile, zircon, and a thin monazite stream. Monazite carries rare earths and thorium; this is not a rare-earth mine. Sold by government tender through Trincomalee, mostly as separated minerals. Shipments have often run well below nameplate.",
+  },
+  {
+    id: "taprobane",
+    name: "Taprobane",
+    company: "Capital Metals",
+    ticker: "AIM:CMET",
+    state: "EP",
+    place: "Eastern Province, beside the Pulmoddai belt",
+    commodities: ["Mineral sands", "Ilmenite", "Rutile", "Zircon"],
+    stage: "Decision pending",
+    capital: "US$17.7m stage one",
+    heard: true,
+    stillOpen: "Approvals, then a final investment decision",
+    note: "Private mineral sands with Sri Lankan partner Ambeon Capital, which invested US$4 million. Results for the year to March 2026, published this September, say FID engineering is largely complete and stage-one capital has been cut from US$20.9 million to US$17.7 million. An environmental impact assessment has been submitted. Construction of nine to twelve months is the company’s timetable after approvals — not a date already banked.",
+  },
+  {
+    id: "meegahakiula",
+    name: "Meegahakiula",
+    company: "Licensed explorers",
+    state: "UV",
+    place: "Badulla, Uva Province",
+    commodities: ["Graphite"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "A resource, not a reserved parcel",
+    note: "Named by the Geological Survey among newer graphite ground, beyond Bogala and Kahatagaha. A permit to reserve land is a pencil mark. It is not a second producing mine.",
+  },
+  {
+    id: "vavuniya-graphite",
+    name: "Vavuniya graphite",
+    company: "Licensed explorers",
+    state: "NP",
+    place: "Vavuniya, Northern Province",
+    commodities: ["Graphite"],
+    stage: "Exploration",
+    heard: true,
+    stillOpen: "Drilling that would turn a licence into a vein",
+    note: "Northern ground reported alongside Meegahakiula as a recent graphite discovery area. Treat it as early. Read the licence, not the adjective.",
+  },
+];
+
+export const EPISODES: Episode[] = [
+  {
+    id: "australia",
+    number: "01",
+    country: "Australia",
+    title: EPISODE.title,
+    kicker: EPISODE.kicker,
+    voice: EPISODE.voice,
+    voiceNote: EPISODE.voiceNote,
+    src: EPISODE.src,
+    lede: "Projects that are public, advanced, and still open — for capital, offtake, or a decision. The September briefing is read by Leo, an English gentleman.",
+    disclaimer:
+      "Figures are compiled from public reports through September 2026 — the major projects list, Austrade’s prospectus, and company statements. Not a recommendation, and not a substitute for the primary documents.",
+    regionLabel: "State",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Nolans”.",
+    stats: [
+      { label: "Major projects", value: "130" },
+      { label: "In this book", value: String(PROJECTS.length) },
+      { label: "Midstream, ’26", value: "29" },
+    ],
+    transcript: TRANSCRIPT,
+    commodities: COMMODITIES,
+    regions: STATES,
+    projects: PROJECTS,
+    defaultOpen: "nolans",
+  },
+  {
+    id: "sri-lanka",
+    number: "02",
+    country: "Sri Lanka",
+    title: "Vein and beach",
+    kicker: "September 2026 · Episode 02",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-sri-lanka.mp3",
+    lede: "Episode two leaves Australia for Sri Lanka: vein graphite that still ships as a lump, and east-coast mineral sands that still ship as a concentrate. Read by Leo.",
+    disclaimer:
+      "Figures are compiled from public notices through September 2026 — the Kahatagaha expression of interest, company results, and the state miners’ own product notes. Not a recommendation, and not a substitute for the tender or the study.",
+    regionLabel: "Province",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Kahatagaha”.",
+    stats: [
+      { label: "Vein output", value: "few kt" },
+      { label: "In this book", value: String(SRI_PROJECTS.length) },
+      { label: "Ilmenite", value: "90kt" },
+    ],
+    transcript: SRI_TRANSCRIPT,
+    commodities: ["Graphite", "Ilmenite", "Rutile", "Zircon", "Monazite", "Mineral sands"],
+    regions: ["NW", "SG", "EP", "UV", "NP"],
+    projects: SRI_PROJECTS,
+    defaultOpen: "kahatagaha",
+  },
+];
+
+export const DEFAULT_EPISODE_ID = "sri-lanka";
