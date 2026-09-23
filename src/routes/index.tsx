@@ -2,6 +2,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { Player } from "@/components/player";
+import { CHAINS, type Chain } from "@/data/chains";
 import { DEFAULT_EPISODE_ID, EPISODES, type Episode, type Project } from "@/data/briefing";
 
 export const Route = createFileRoute("/")({ component: Home });
@@ -13,7 +14,10 @@ function kindOf(item: Episode) {
 function Home() {
   const [episodeId, setEpisodeId] = useState(DEFAULT_EPISODE_ID);
   const episode = EPISODES.find((item) => item.id === episodeId) ?? EPISODES[0];
-  const [shelf, setShelf] = useState<"country" | "element">(kindOf(episode));
+  const [shelf, setShelf] = useState<"country" | "element" | "chains">(kindOf(episode));
+  const [chainId, setChainId] = useState(CHAINS[0].id);
+  const chain = CHAINS.find((item) => item.id === chainId) ?? CHAINS[0];
+  const exploring = shelf === "chains";
   const [episodeQuery, setEpisodeQuery] = useState("");
   const [query, setQuery] = useState("");
   const [commodity, setCommodity] = useState<string>("All");
@@ -46,6 +50,14 @@ function Home() {
     return items;
   }, [shelf, episodeQuery]);
 
+  const chains = useMemo(() => {
+    const q = episodeQuery.trim().toLowerCase();
+    return CHAINS.filter((item) => {
+      if (!q) return true;
+      return `${item.name} ${item.symbol} ${item.use}`.toLowerCase().includes(q);
+    });
+  }, [episodeQuery]);
+
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
     return episode.projects.filter((project) => {
@@ -72,14 +84,25 @@ function Home() {
           />
         </h1>
         <p className="mt-4 text-xs font-semibold tracking-widest text-copper uppercase">
-          Critical minerals · {episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}
+          {exploring
+            ? `Supply chain · ${chain.name}`
+            : `Critical minerals · ${episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}`}
         </p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">{episode.lede}</p>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
+              {exploring ? chain.lede : episode.lede}
+            </p>
           </div>
           <dl className="grid grid-cols-3 gap-x-4 gap-y-1 text-sm">
-            {episode.stats.map((stat) => (
+            {(exploring
+              ? [
+                  { label: "Steps", value: String(chain.steps.length) },
+                  { label: "Pinch", value: chain.pinch },
+                  { label: "Buys", value: chain.use },
+                ]
+              : episode.stats
+            ).map((stat) => (
               <div key={stat.label}>
                 <dt className="text-muted">{stat.label}</dt>
                 <dd className="font-display text-2xl tabular-nums">{stat.value}</dd>
@@ -110,36 +133,65 @@ function Home() {
             >
               Elements
             </Chip>
+            <Chip
+              active={shelf === "chains"}
+              onClick={() => {
+                setShelf("chains");
+                setEpisodeQuery("");
+              }}
+            >
+              Chains
+            </Chip>
           </div>
           <div className="relative mb-2">
             <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
             <input
               value={episodeQuery}
               onChange={(event) => setEpisodeQuery(event.target.value)}
-              placeholder={shelf === "element" ? "Find an element or a symbol" : "Find a country"}
-              aria-label={shelf === "element" ? "Find an element" : "Find a country"}
+              placeholder={
+                exploring ? "Find a chain" : shelf === "element" ? "Find an element or a symbol" : "Find a country"
+              }
+              aria-label={exploring ? "Find a chain" : shelf === "element" ? "Find an element" : "Find a country"}
               className="w-full rounded-full border border-rule bg-card py-2 pr-4 pl-10 text-sm text-ink placeholder:text-muted"
             />
           </div>
           <div className="mb-3 max-h-72 space-y-1 overflow-y-auto pr-1" role="group" aria-label="Episode">
-            {listed.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={item.id === episode.id}
-                onClick={() => chooseEpisode(item.id)}
-                className={
-                  "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
-                  (item.id === episode.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
-                }
-              >
-                <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
-                  {item.symbol || item.number}
-                </span>
-                <span className="font-display text-base leading-tight">{item.country}</span>
-              </button>
-            ))}
-            {listed.length === 0 ? (
+            {exploring
+              ? chains.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    aria-pressed={item.id === chain.id}
+                    onClick={() => setChainId(item.id)}
+                    className={
+                      "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
+                      (item.id === chain.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
+                    }
+                  >
+                    <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
+                      {item.symbol}
+                    </span>
+                    <span className="font-display text-base leading-tight">{item.name}</span>
+                  </button>
+                ))
+              : listed.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    aria-pressed={item.id === episode.id}
+                    onClick={() => chooseEpisode(item.id)}
+                    className={
+                      "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
+                      (item.id === episode.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
+                    }
+                  >
+                    <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
+                      {item.symbol || item.number}
+                    </span>
+                    <span className="font-display text-base leading-tight">{item.country}</span>
+                  </button>
+                ))}
+            {(exploring ? chains : listed).length === 0 ? (
               <p className="px-3 py-2 text-sm text-muted">Nothing on this shelf matches.</p>
             ) : null}
           </div>
@@ -147,7 +199,16 @@ function Home() {
           <p className="mt-3 text-xs leading-relaxed text-muted">{episode.disclaimer}</p>
         </aside>
 
-        <section className="min-w-0" aria-label="Projects">
+        <section className="min-w-0" aria-label={exploring ? "Supply chain" : "Projects"}>
+          {exploring ? (
+            <ChainView
+              chain={chain}
+              onOpen={(id) => {
+                chooseEpisode(id);
+              }}
+            />
+          ) : (
+            <>
           <div className="flex flex-col gap-3">
             <div className="relative">
               <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
@@ -206,9 +267,58 @@ function Home() {
               ))}
             </ul>
           )}
+            </>
+          )}
         </section>
       </div>
     </main>
+  );
+}
+
+function ChainView({ chain, onOpen }: { chain: Chain; onOpen: (episodeId: string) => void }) {
+  return (
+    <div>
+      <ol className="space-y-3">
+        {chain.steps.map((step, index) => (
+          <li key={step.id} className="rounded-card border border-rule bg-card p-4">
+            <div className="flex items-baseline gap-3">
+              <span className="font-display text-2xl text-copper tabular-nums">{index + 1}</span>
+              <h2 className="text-xl leading-none font-medium">{step.name}</h2>
+            </div>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed">{step.what}</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {step.holders.map((holder) =>
+                holder.episodeId ? (
+                  <li key={holder.name}>
+                    <button
+                      type="button"
+                      onClick={() => onOpen(holder.episodeId!)}
+                      className="min-h-11 rounded-full bg-chip px-3 py-2 text-left text-sm hover:bg-rule"
+                    >
+                      <span className="font-medium">{holder.name}</span>
+                      <span className="text-muted"> · {holder.role}</span>
+                    </button>
+                  </li>
+                ) : (
+                  <li
+                    key={holder.name}
+                    className="flex min-h-11 items-center rounded-full border border-dashed border-rule px-3 py-2 text-sm"
+                  >
+                    <span className="font-medium">{holder.name}</span>
+                    <span className="text-muted"> · {holder.role}</span>
+                  </li>
+                ),
+              )}
+            </ul>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-4 text-xs leading-relaxed text-muted">
+        A mine share is not a refining share. The Survey prints the first. It does not print the
+        plant. This is the hand-off, not a customs form. A country button loads that briefing in
+        the player. It does not leave the chain.
+      </p>
+    </div>
   );
 }
 
