@@ -5,7 +5,8 @@ export type Stage =
   | "PFS"
   | "Operating"
   | "Study reshaped"
-  | "Exploration";
+  | "Exploration"
+  | "Scoping";
 
 export type Project = {
   id: string;
@@ -599,6 +600,158 @@ const SA_PROJECTS: Project[] = [
   },
 ];
 
+const BR_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is Open Lode, episode four. Tonight, Brazil — which already makes the great majority of the world’s niobium, and has just written a law about everything else. I am Leo.",
+  },
+  {
+    heading: "The warehouse",
+    body: "At Araxá, in Minas Gerais, CBMM turns a carbonatite into ferroniobium and, with it, most of the niobium the world puts into steel. It is a private company and a finished industry. Beside that, Brazil mines nickel, graphite, and a growing tonnage of lithium. On 16 September the president signed the National Policy on Critical and Strategic Minerals: up to 7 billion reais in incentives, and a guarantee fund seeded with 2 billion from the federal government. A statute is not a separation plant.",
+  },
+  {
+    heading: "One mine",
+    body: "Serra Verde, at Minaçu in Goiás, is the rare-earth mine. Ionic clay, mixed carbonate. Output is still on the order of 100 tonnes of oxide a year, with a hope of about 6,400 by the end of 2027. In April the company agreed a combination with USA Rare Earth, valued near 2.8 billion dollars. A fifteen-year contract would take phase one into a vehicle backed by American public money. In August the US Department of Defense committed 750 million dollars to that vehicle. The carbonate can be Brazilian. The separation, the metal, and the magnet are intended to happen somewhere else.",
+  },
+  {
+    heading: "Three studies",
+    body: "Caldeira, Meteoric, at Poços de Caldas: a definitive study on 31 July, 498 million dollars, mixed carbonate in 2029, an installation licence hoped this quarter, and a decision in the first quarter of 2027. POSCO’s memorandum is non-binding. Colossus, Viridis, in the same province: about 449 million dollars, a preliminary licence in hand, a decision hoped before year-end, separation booked on paper with Solvay in France. Rocha da Rocha, Brazilian Rare Earths, in Bahia: a scoping study in August, 969 million dollars, first production not until 2031, and the only current plan that would separate an oxide on Brazilian soil — even then a heavy concentrate is contracted for France. Aclara’s Carina, in Goiás, has a study near 781 million dollars and a separation plan in Louisiana.",
+  },
+  {
+    heading: "Lithium and graphite",
+    body: "Sigma Lithium, in the Jequitinhonha Valley, signed a conduct agreement with Minas Gerais in August and turned Grota do Cirilo back on after a partial suspension. Guidance is 240,000 tonnes of concentrate over the next twelve months, and 330,000 in 2027 from the plant they already have. The next plant has slipped toward the end of 2027. Santa Cruz, in Bahia, is graphite: South Star came close to failure in late 2025 and restarted this year, aiming at 5,000 tonnes by the end of 2026. St George, at Araxá, would like niobium to pay for a rare-earth plant beside CBMM. The separation route is not chosen.",
+  },
+  {
+    heading: "Three habits",
+    body: "Ask whether the tonne is niobium, which Brazil already sells, or a mixed carbonate, which someone else will separate. Ask which licence is actually in hand. And ask where the solvent extraction happens. If the answer is Louisiana, or France, or to be decided, you do not yet have a Brazilian magnet industry. Brasília has passed a law. The clay is real. The refinery is not.",
+  },
+];
+
+const BR_PROJECTS: Project[] = [
+  {
+    id: "cbmm-araxa",
+    name: "Araxá niobium",
+    company: "CBMM",
+    state: "MG",
+    place: "Araxá, Minas Gerais",
+    commodities: ["Niobium"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Not the ore — the rest of the periodic table",
+    note: "The finished industry. Ferroniobium from a carbonatite, and the great majority of the niobium the world uses in steel. Private, deep, and not waiting on a maiden resource. Everything else in this episode is measured against it.",
+  },
+  {
+    id: "serra-verde",
+    name: "Serra Verde",
+    company: "Serra Verde",
+    state: "GO",
+    place: "Minaçu, Goiás",
+    commodities: ["Rare earths"],
+    stage: "Operating",
+    capital: "US$2.8bn combination announced",
+    heard: true,
+    stillOpen: "The ramp, and a refinery that is not in Brazil",
+    note: "The only Brazilian mine producing rare earths as the product. Ionic clay, mixed carbonate. Output is still on the order of 100 tonnes of oxide a year, with a company hope of about 6,400 tonnes by the end of 2027. April 2026: a business combination with USA Rare Earth, valued near US$2.8 billion, and a fifteen-year take of phase one by a US-backed vehicle. In August the US Department of Defense committed US$750 million to that vehicle. Separation is intended to happen abroad.",
+  },
+  {
+    id: "caldeira",
+    name: "Caldeira",
+    company: "Meteoric Resources",
+    ticker: "ASX:MEI",
+    state: "MG",
+    place: "Poços de Caldas, Minas Gerais",
+    commodities: ["Rare earths"],
+    stage: "DFS",
+    capital: "US$498m",
+    heard: true,
+    stillOpen: "Installation licence, then a decision",
+    note: "Definitive study published 31 July 2026. Mixed carbonate aimed at 2029. An installation licence is hoped this quarter, and a final investment decision in the first quarter of 2027. POSCO International has a non-binding memorandum for up to 30 percent of the material, for up to seven years. Non-binding is the word to keep.",
+  },
+  {
+    id: "colossus",
+    name: "Colossus",
+    company: "Viridis Mining",
+    ticker: "ASX:VMM",
+    state: "MG",
+    place: "Poços de Caldas, Minas Gerais",
+    commodities: ["Rare earths"],
+    stage: "DFS",
+    capital: "US$449m",
+    heard: true,
+    stillOpen: "A decision before year-end, on the company’s clock",
+    note: "Feasibility study near US$449 million. Preliminary licence in December 2025; installation-licence application in May 2026. A final investment decision is hoped in the fourth quarter of 2026, with commercial production spoken of for 2028. Separation is booked, on paper, with Solvay in France.",
+  },
+  {
+    id: "rocha-da-rocha",
+    name: "Rocha da Rocha",
+    company: "Brazilian Rare Earths",
+    ticker: "ASX:BRE",
+    state: "BA",
+    place: "Monte Alto, Bahia",
+    commodities: ["Rare earths"],
+    stage: "Scoping",
+    capital: "US$969m to first ore",
+    heard: true,
+    stillOpen: "A decade, and a separator that mostly still points at France",
+    note: "Scoping study of 13 August 2026: US$969 million to first production, guided for 2031. The only current plan that would separate a rare-earth oxide on Brazilian soil, at Camaçari, with French Carester engineering. A heavy concentrate is still contracted to leave for France. High grade in the core is not a refinery.",
+  },
+  {
+    id: "carina",
+    name: "Carina",
+    company: "Aclara Resources",
+    ticker: "TSX:ARA",
+    state: "GO",
+    place: "Nova Roma, Goiás",
+    commodities: ["Rare earths"],
+    stage: "DFS",
+    capital: "US$781m",
+    heard: true,
+    stillOpen: "The same pattern: concentrate here, separation in Louisiana",
+    note: "Ionic-clay study, completed in 2026, near US$781 million. Average output is put around 4,400 tonnes of oxide in a mixed concentrate. The separation plan sits in the United States, not in Goiás.",
+  },
+  {
+    id: "grota-do-cirilo",
+    name: "Grota do Cirilo",
+    company: "Sigma Lithium",
+    ticker: "NASDAQ:SGML",
+    state: "MG",
+    place: "Araçuaí and Itinga, Jequitinhonha Valley",
+    commodities: ["Lithium"],
+    stage: "Operating",
+    capital: "R$600m planned for 2027",
+    heard: true,
+    stillOpen: "Proving the restart, then the next plant",
+    note: "Partly suspended, then a conduct agreement with the state of Minas Gerais in August 2026 turned the machines back on. Guidance is 240,000 tonnes of lithium concentrate over the next twelve months, and 330,000 tonnes in 2027 from the existing plant. The next industrial plant has slipped toward the end of 2027. A legal peace is not the tonnes.",
+  },
+  {
+    id: "santa-cruz",
+    name: "Santa Cruz",
+    company: "South Star Battery Metals",
+    ticker: "TSXV:STS",
+    state: "BA",
+    place: "Bahia",
+    commodities: ["Graphite"],
+    stage: "Operating",
+    heard: true,
+    stillOpen: "Whether the restart holds past 5,000 tonnes",
+    note: "Came close to failure in late 2025, changed management, cut cash costs, and restarted production in 2026. The near target is 5,000 tonnes of concentrate by the end of this year, then a modest step to 10,000. A larger expansion still needs a study written after the turnaround, not the 2022 numbers.",
+  },
+  {
+    id: "st-george-araxa",
+    name: "Araxá rare earths",
+    company: "St George Mining",
+    ticker: "ASX:SGQ",
+    state: "MG",
+    place: "Araxá, Minas Gerais",
+    commodities: ["Rare earths", "Niobium"],
+    stage: "Decision pending",
+    capital: "Up to US$350m",
+    heard: true,
+    stillOpen: "A separation route, and a reason CBMM’s neighbour should care",
+    note: "Carbonatite beside the world’s niobium plant. An August 2026 resource update lifted the rare-earth estimate sharply. Amperex took a share in June. A pilot is hoped by the end of 2026. The separation route is not chosen. A location is not a customer.",
+  },
+];
+
 export const EPISODES: Episode[] = [
   {
     id: "australia",
@@ -675,6 +828,31 @@ export const EPISODES: Episode[] = [
     projects: SA_PROJECTS,
     defaultOpen: "platreef",
   },
+  {
+    id: "brazil",
+    number: "04",
+    country: "Brazil",
+    title: "One mine",
+    kicker: "September 2026 · Episode 04",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/open-lode-brazil.mp3",
+    lede: "Episode four is Brazil: most of the world’s niobium, one producing rare-earth mine, and no refinery of its own. Leo reads the clay, the lithium restart, and the studies that still ship their separation abroad.",
+    disclaimer:
+      "Figures are compiled from public notices through September 2026 — company studies, the September minerals law, and the miners’ own guidance. Not a recommendation, and not a substitute for the licence or the offtake.",
+    regionLabel: "State",
+    emptyHint: "Nothing in the book matches that. Clear a filter, or try “Serra Verde”.",
+    stats: [
+      { label: "REE mines", value: "1" },
+      { label: "In this book", value: String(BR_PROJECTS.length) },
+      { label: "Niobium", value: "Most" },
+    ],
+    transcript: BR_TRANSCRIPT,
+    commodities: ["Niobium", "Rare earths", "Lithium", "Graphite"],
+    regions: ["MG", "GO", "BA"],
+    projects: BR_PROJECTS,
+    defaultOpen: "serra-verde",
+  },
 ];
 
-export const DEFAULT_EPISODE_ID = "south-africa";
+export const DEFAULT_EPISODE_ID = "brazil";
