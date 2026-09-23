@@ -353,6 +353,33 @@ function InstitutionalFlow() {
           </p>
         </li>
         <li className="rounded-card border border-rule bg-card p-4">
+          <h3 className="text-lg leading-none font-medium">The holdings</h3>
+          <p className="mt-2 text-sm leading-relaxed">
+            The issuer’s holdings list, beside assets of $574 million dated 21 September, is a wide
+            book. Nothing is more than 5 percent. The first ten names are 38.7 percent of the fund.
+          </p>
+          <ul className="mt-3 space-y-1 text-sm">
+            <li>Freeport-McMoRan, copper — 4.97%</li>
+            <li>Cameco, uranium — 4.92%</li>
+            <li>Lynas, rare earths — 4.55%</li>
+            <li>PLS Group, lithium — 3.96%</li>
+            <li>Kazatomprom, uranium — 3.74%</li>
+            <li>Albemarle, lithium — 3.38%</li>
+            <li>Uranium Energy — 3.32%</li>
+            <li>Hecla, silver — 3.31%</li>
+            <li>First Majestic, silver — 3.29%</li>
+            <li>SQM, lithium — 3.23%</li>
+          </ul>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Two of those ten are silver miners. Lynas, the rare-earth separator, is one line.
+            MP Materials is 3.14 percent, just outside the ten. Energy Fuels, the name on a $725
+            million conditional loan, is 1.17 percent. Arafura, which this book has already walked,
+            is 0.22 percent. Critical Metals Corp itself — the stock the tape shouted about this
+            week — is 0.26 percent. Buying the ETF is not buying that story. It is buying a slice
+            of Freeport, Cameco, and a long tail of miners. Still not a tonne.
+          </p>
+        </li>
+        <li className="rounded-card border border-rule bg-card p-4">
           <h3 className="text-lg leading-none font-medium">The state pipe</h3>
           <p className="mt-2 text-sm leading-relaxed">
             The Pentagon’s Office of Strategic Capital has been signing conditional loans, not
@@ -381,10 +408,12 @@ function InstitutionalFlow() {
         </li>
       </ol>
       <p className="mt-4 text-xs leading-relaxed text-muted">
-        Read as of 22 September 2026, from the issuer’s page, a 13F compilation through 30 June,
-        Reuters on 7 August, and testimony to the Senate Armed Services Committee. Last week’s
-        $2.6 billion into commodity ETFs was the whole commodity complex. It is not a
-        critical-minerals flow. None of this is a recommendation.
+        Read as of 22 September 2026. Holdings are the issuer’s list beside assets dated 21
+        September. Category weights are the issuer’s breakdown as of 31 August. The 13F
+        compilation runs through 30 June. State figures are Reuters on 7 August and testimony to
+        the Senate Armed Services Committee. Last week’s $2.6 billion into commodity ETFs was the
+        whole commodity complex. It is not a critical-minerals flow. None of this is a
+        recommendation.
       </p>
     </div>
   );
