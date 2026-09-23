@@ -248,6 +248,7 @@ function Home() {
               </div>
             </div>
           ) : null}
+          {onMoney ? <InstitutionalFlow /> : null}
           {exploring ? (
             <ChainView
               chain={chain}
@@ -320,6 +321,72 @@ function Home() {
         </section>
       </div>
     </main>
+  );
+}
+
+function InstitutionalFlow() {
+  return (
+    <div className="mb-8 max-w-xl">
+      <p className="text-xs font-semibold tracking-widest text-copper uppercase">Institutional flow</p>
+      <h2 className="mt-2 text-2xl leading-none font-medium">Three pipes, none of them a tonne</h2>
+      <p className="mt-3 text-sm leading-relaxed">
+        Institutional flow is not one number. A fund buying shares, a ministry signing a loan, and a
+        smelter signing offtake are three pipes. Add them together and you have not found a
+        shipment.
+      </p>
+      <ol className="mt-4 space-y-3">
+        <li className="rounded-card border border-rule bg-card p-4">
+          <h3 className="text-lg leading-none font-medium">The fund pipe</h3>
+          <p className="mt-2 text-sm leading-relaxed">
+            Sprott’s own page, 22 September 2026, puts the Critical Materials ETF (SETM) at $586
+            million. The weights, as of 31 August, are the tell: copper equities 28 percent,
+            uranium 25, lithium 17, silver 17, rare earths under 10. Graphite is 0.13 percent.
+            Nickel is 2. That is a parked book of miners, mostly the metals that already trade,
+            not the pinch in the chain.
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            A compilation of 13F filings through 30 June shows 172 institutions in Critical Metals
+            (CRML), about 32 percent of the shares, and a net add of 9 million shares on the
+            quarter. The filing does not know what the stock did this week. The two-times
+            single-stock funds that jumped more than 75 percent on 21 September were a price, for
+            a day. A price is not an inflow, and an inflow is not offtake.
+          </p>
+        </li>
+        <li className="rounded-card border border-rule bg-card p-4">
+          <h3 className="text-lg leading-none font-medium">The state pipe</h3>
+          <p className="mt-2 text-sm leading-relaxed">
+            The Pentagon’s Office of Strategic Capital has been signing conditional loans, not
+            handing over metal. In June, $725 million for Energy Fuels’ separation plant and $500
+            million for Phoenix Tailings, both conditional. On 7 August Reuters reported a further
+            $3 billion announced, including a $1.4 billion conditional loan to Sila, $400 million
+            to Sunrise, and $150 million to Niron. Conditional means the cheque is still a
+            condition.
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            Congress has appropriated stockpile money — testimony this year cited $2 billion for
+            the National Defense Stockpile and $5 billion for minerals in the same act, plus $975
+            million of older Defense Production Act money across 15 projects. An appropriation is
+            not a warehouse. The same testimony says the stockpile now wants separated oxides,
+            metals, and magnets, not concentrate. That is the pinch, funded slowly.
+          </p>
+        </li>
+        <li className="rounded-card border border-rule bg-card p-4">
+          <h3 className="text-lg leading-none font-medium">The offtake pipe</h3>
+          <p className="mt-2 text-sm leading-relaxed">
+            The fifteen-year contract is the other institutional habit. Critical Metals’ binding
+            offtake with REalloys, for a portion of Tanbreez concentrate, is a treaty with a
+            mine that is not yet a mine. It can sit beside a 13F. It is not the same event. One
+            is a share register. One is a promise about future tonnes.
+          </p>
+        </li>
+      </ol>
+      <p className="mt-4 text-xs leading-relaxed text-muted">
+        Read as of 22 September 2026, from the issuer’s page, a 13F compilation through 30 June,
+        Reuters on 7 August, and testimony to the Senate Armed Services Committee. Last week’s
+        $2.6 billion into commodity ETFs was the whole commodity complex. It is not a
+        critical-minerals flow. None of this is a recommendation.
+      </p>
+    </div>
   );
 }
 
