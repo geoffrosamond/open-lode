@@ -391,12 +391,16 @@ const SRI_TRANSCRIPT: Episode["transcript"] = [
     body: "The Geological Survey has spoken of licences beyond the two old mines, including ground at Meegahakiula in Badulla, and in Vavuniya. A permit to reserve land is a pencil mark. It is not a second Bogala.",
   },
   {
+    heading: "Graphite Earth",
+    body: "One name asking for money, rather than waiting on a ministry, is Graphite Earth, established in Wales. The company is seeking investment to complete JORC reports on two separate allotments in Sri Lanka. Series 2 is open. The particulars are at graphiteearth.com. I will be plain. A JORC that has not been written is not a resource. Two allotments are not two mines. The company’s own page speaks of mining fully operational in 2027. That is a hope, not a pour of concrete. If you are looking at Series 2, read which ground, and whose licence, the reports will cover.",
+  },
+  {
     heading: "The beaches",
     body: "Pulmoddai, on the east coast near Trincomalee, is Lanka Mineral Sands, also a state company. The sand is unusually rich. The plant’s nameplate is on the order of 90,000 tonnes of ilmenite a year, with smaller lines of rutile, zircon, and a thin stream of monazite. Ilmenite and rutile are titanium minerals. Monazite is the rare-earth footnote, and it carries thorium, which is why a careful person does not call Pulmoddai a rare-earth mine. Sales are by government tender. Shipments have often sat well below the nameplate. Beside that beach sits Taprobane, Capital Metals’ project, with Sri Lankan partner Ambeon Capital. Results for the year to March 2026 say the engineering for a final investment decision is largely complete, and that stage-one capital has been cut to US$17.7 million. Approvals are still outstanding. The company talks of nine to twelve months of building once they arrive. Treat that as a calendar, not a fact in the bank.",
   },
   {
     heading: "Three habits",
-    body: "What is actually open is a handful of projects, not one hundred and thirty. Ask whether the carbon is vein or flake. Ask what leaves the port: a lump, a concentrate, or a battery material. And ask who owns the ore after the partnership is signed. A few thousand tonnes of the best vein graphite in the world is a speciality. It is not a flood. Read the expression of interest, the company statements, and the tender — not merely a pleasant voice on an evening.",
+    body: "What is actually open is a handful of projects, not one hundred and thirty. Ask whether the carbon is vein or flake. Ask what leaves the port: a lump, a concentrate, or a battery material. And if a company is raising money to write the JORC, ask to see the allotments before you see the series. A few thousand tonnes of the best vein graphite in the world is a speciality. It is not a flood. Read the expression of interest, the company statements, and the tender — not merely a pleasant voice on an evening.",
   },
 ];
 
@@ -463,7 +467,20 @@ const SRI_PROJECTS: Project[] = [
     stage: "Exploration",
     heard: true,
     stillOpen: "A resource, not a reserved parcel",
-    note: "Named by the Geological Survey among newer graphite ground, beyond Bogala and Kahatagaha. A permit to reserve land is a pencil mark. It is not a second producing mine.",
+    note: "Named by the Geological Survey among newer graphite ground, beyond Bogala and Kahatagaha. A permit to reserve land is a pencil mark. It is not a second producing mine. Not to be confused with Graphite Earth’s two allotments, which the company has not named in the note I am reading.",
+  },
+  {
+    id: "graphite-earth",
+    name: "Graphite Earth",
+    company: "Graphite Earth",
+    state: "SL",
+    place: "Two allotments, not named here",
+    commodities: ["Graphite"],
+    stage: "Exploration",
+    capital: "Series 2 open",
+    heard: true,
+    stillOpen: "Two JORC reports, which the money is meant to finish",
+    note: "A Welsh company, established in 2021, seeking investment to complete JORC reports on two separate Sri Lankan allotments. Series 2 is open. Particulars at graphiteearth.com. A JORC that has not been written is not a resource, and two allotments are not two mines. The company’s page speaks of mining fully operational in 2027. That is their timetable, not a completed study.",
   },
   {
     id: "vavuniya-graphite",
@@ -1662,9 +1679,9 @@ const RECORDED: Episode[] = [
     voice: "Leo",
     voiceNote: "English gentleman · unhurried British delivery",
     src: "/podcast/episodes/sri-lanka/briefing.mp3",
-    lede: "Episode two leaves Australia for Sri Lanka: vein graphite that still ships as a lump, and east-coast mineral sands that still ship as a concentrate. Read by Leo.",
+    lede: "Episode two leaves Australia for Sri Lanka: vein graphite that still ships as a lump, and a Welsh company, Graphite Earth, raising Series 2 to finish JORC reports on two allotments. Read by Leo.",
     disclaimer:
-      "Figures are compiled from public notices through September 2026 — the Kahatagaha expression of interest, company results, and the state miners’ own product notes. Not a recommendation, and not a substitute for the tender or the study.",
+      "The Series 2 offer and the two allotments are Graphite Earth’s own account, September 2026, at graphiteearth.com. The JORC reports are not written. Other figures are public notices through September 2026. Not a recommendation, and not an offer.",
     regionLabel: "Province",
     regionAll: "provinces",
     emptyHint: "Nothing in the book matches that. Clear a filter, or try “Kahatagaha”.",
@@ -1675,9 +1692,9 @@ const RECORDED: Episode[] = [
     ],
     transcript: SRI_TRANSCRIPT,
     commodities: ["Graphite", "Ilmenite", "Rutile", "Zircon", "Monazite", "Mineral sands"],
-    regions: ["NW", "SG", "EP", "UV", "NP"],
+    regions: ["NW", "SG", "EP", "UV", "NP", "SL"],
     projects: SRI_PROJECTS,
-    defaultOpen: "kahatagaha",
+    defaultOpen: "graphite-earth",
   },
   {
     id: "south-africa",
@@ -1947,4 +1964,4 @@ const RECORDED: Episode[] = [
 
 export const EPISODES: Episode[] = [...RECORDED, ...(SHELF as Episode[])];
 
-export const DEFAULT_EPISODE_ID = "tantalum";
+export const DEFAULT_EPISODE_ID = "sri-lanka";
