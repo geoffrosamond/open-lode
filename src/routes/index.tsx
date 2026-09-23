@@ -43,8 +43,10 @@ function Home() {
       chooseEpisode("the-desk");
       return;
     }
-    if ((next === "country" || next === "element") && kindOf(episode) !== next) {
-      const first = EPISODES.find((item) => kindOf(item) === next);
+    const leavingMoney = kindOf(episode) === "money";
+    const shelfKind = next === "element" ? "element" : "country";
+    if (leavingMoney || (next !== "chains" && kindOf(episode) !== next)) {
+      const first = EPISODES.find((item) => kindOf(item) === shelfKind);
       if (first) chooseEpisode(first.id);
     }
   }
@@ -68,9 +70,17 @@ function Home() {
     });
   }, [episodeQuery]);
 
+  const onMoney = shelf === "money";
+  const desk = EPISODES.find((item) => item.id === "the-desk") ?? episode;
+  const reading =
+    kindOf(episode) === "money"
+      ? (EPISODES.find((item) => item.id === DEFAULT_EPISODE_ID) ?? episode)
+      : episode;
+  const shown = onMoney ? desk : reading;
+
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return episode.projects.filter((project) => {
+    return shown.projects.filter((project) => {
       if (onlyHeard && !project.heard) return false;
       if (commodity !== "All" && !project.commodities.includes(commodity)) return false;
       if (region !== "All" && project.state !== region) return false;
@@ -81,7 +91,7 @@ function Home() {
         .toLowerCase();
       return hay.includes(q);
     });
-  }, [episode, query, commodity, region, onlyHeard]);
+  }, [shown, query, commodity, region, onlyHeard]);
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
@@ -129,91 +139,115 @@ function Home() {
               Smart money
             </Chip>
           </div>
-          <div className="relative mb-2">
-            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
-            <input
-              value={episodeQuery}
-              onChange={(event) => setEpisodeQuery(event.target.value)}
-              placeholder={
-                shelf === "chains"
-                  ? "Find a chain"
-                  : shelf === "element"
-                    ? "Find an element or a symbol"
-                    : shelf === "money"
-                      ? "Find the note"
-                      : "Find a country"
-              }
-              aria-label={
-                shelf === "chains"
-                  ? "Find a chain"
-                  : shelf === "element"
-                    ? "Find an element"
-                    : shelf === "money"
-                      ? "Find the note"
-                      : "Find a country"
-              }
-              className="w-full rounded-full border border-rule bg-card py-2 pr-4 pl-10 text-sm text-ink placeholder:text-muted"
-            />
-          </div>
-          <div className="mb-3 max-h-72 space-y-1 overflow-y-auto pr-1" role="group" aria-label="Episode">
-            {exploring
-              ? chains.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    aria-pressed={item.id === chain.id}
-                    onClick={() => setChainId(item.id)}
-                    className={
-                      "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
-                      (item.id === chain.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
-                    }
-                  >
-                    <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
-                      {item.symbol}
-                    </span>
-                    <span className="font-display text-base leading-tight">{item.name}</span>
-                  </button>
-                ))
-              : listed.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    aria-pressed={item.id === episode.id}
-                    onClick={() => chooseEpisode(item.id)}
-                    className={
-                      "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
-                      (item.id === episode.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
-                    }
-                  >
-                    <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
-                      {item.symbol || item.number}
-                    </span>
-                    <span className="font-display text-base leading-tight">{item.country}</span>
-                  </button>
-                ))}
-            {(exploring ? chains : listed).length === 0 ? (
-              <p className="px-3 py-2 text-sm text-muted">Nothing on this shelf matches.</p>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <p className="text-xs font-semibold tracking-widest text-copper uppercase">
-              This briefing · {episode.symbol ? `${episode.country} (${episode.symbol})` : episode.country}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{episode.lede}</p>
-            <dl className="mt-3 grid grid-cols-3 gap-x-3 text-sm">
-              {episode.stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-muted">{stat.label}</dt>
-                  <dd className="font-display text-xl tabular-nums">{stat.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <Player key={episode.id} episode={episode} />
-          <p className="mt-3 text-xs leading-relaxed text-muted">{episode.disclaimer}</p>
+          {onMoney ? null : (
+            <>
+              <div className="relative mb-2">
+                <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
+                <input
+                  value={episodeQuery}
+                  onChange={(event) => setEpisodeQuery(event.target.value)}
+                  placeholder={
+                    shelf === "chains"
+                      ? "Find a chain"
+                      : shelf === "element"
+                        ? "Find an element or a symbol"
+                        : "Find a country"
+                  }
+                  aria-label={
+                    shelf === "chains"
+                      ? "Find a chain"
+                      : shelf === "element"
+                        ? "Find an element"
+                        : "Find a country"
+                  }
+                  className="w-full rounded-full border border-rule bg-card py-2 pr-4 pl-10 text-sm text-ink placeholder:text-muted"
+                />
+              </div>
+              <div className="mb-3 max-h-72 space-y-1 overflow-y-auto pr-1" role="group" aria-label="Episode">
+                {exploring
+                  ? chains.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        aria-pressed={item.id === chain.id}
+                        onClick={() => setChainId(item.id)}
+                        className={
+                          "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
+                          (item.id === chain.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
+                        }
+                      >
+                        <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
+                          {item.symbol}
+                        </span>
+                        <span className="font-display text-base leading-tight">{item.name}</span>
+                      </button>
+                    ))
+                  : listed.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        aria-pressed={item.id === shown.id}
+                        onClick={() => chooseEpisode(item.id)}
+                        className={
+                          "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
+                          (item.id === shown.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
+                        }
+                      >
+                        <span className="w-10 shrink-0 text-xs font-semibold tracking-widest uppercase">
+                          {item.symbol || item.number}
+                        </span>
+                        <span className="font-display text-base leading-tight">{item.country}</span>
+                      </button>
+                    ))}
+                {(exploring ? chains : listed).length === 0 ? (
+                  <p className="px-3 py-2 text-sm text-muted">Nothing on this shelf matches.</p>
+                ) : null}
+              </div>
+            </>
+          )}
+          {onMoney ? null : shelf === "chains" ? null : (
+            <>
+              <div className="mb-3">
+                <p className="text-xs font-semibold tracking-widest text-copper uppercase">
+                  This briefing · {shown.symbol ? `${shown.country} (${shown.symbol})` : shown.country}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{shown.lede}</p>
+                <dl className="mt-3 grid grid-cols-3 gap-x-3 text-sm">
+                  {shown.stats.map((stat) => (
+                    <div key={stat.label}>
+                      <dt className="text-muted">{stat.label}</dt>
+                      <dd className="font-display text-xl tabular-nums">{stat.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <Player key={shown.id} episode={shown} />
+              <p className="mt-3 text-xs leading-relaxed text-muted">{shown.disclaimer}</p>
+            </>
+          )}
         </aside>
 
-        <section className="min-w-0" aria-label={exploring ? "Supply chain" : "Projects"}>
+        <section className="min-w-0" aria-label={onMoney ? "Smart money" : exploring ? "Supply chain" : "Projects"}>
+          {onMoney ? (
+            <div className="mb-6">
+              <p className="text-xs font-semibold tracking-widest text-copper uppercase">
+                This briefing · {desk.country}
+              </p>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{desk.lede}</p>
+              <dl className="mt-3 grid max-w-md grid-cols-3 gap-x-3 text-sm">
+                {desk.stats.map((stat) => (
+                  <div key={stat.label}>
+                    <dt className="text-muted">{stat.label}</dt>
+                    <dd className="font-display text-xl tabular-nums">{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="mt-4 max-w-xl">
+                <Player key={desk.id} episode={desk} />
+                <p className="mt-3 text-xs leading-relaxed text-muted">{desk.disclaimer}</p>
+              </div>
+            </div>
+          ) : null}
           {exploring ? (
             <ChainView
               chain={chain}
@@ -238,18 +272,18 @@ function Home() {
               <Chip active={commodity === "All"} onClick={() => setCommodity("All")}>
                 All minerals
               </Chip>
-              {episode.commodities.map((item) => (
+              {shown.commodities.map((item) => (
                 <Chip key={item} active={commodity === item} onClick={() => setCommodity(item)}>
                   {item}
                 </Chip>
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <div className="flex flex-wrap gap-2" role="group" aria-label={episode.regionLabel}>
+              <div className="flex flex-wrap gap-2" role="group" aria-label={shown.regionLabel}>
                 <Chip active={region === "All"} onClick={() => setRegion("All")}>
-                  All {episode.regionAll}
+                  All {shown.regionAll}
                 </Chip>
-                {episode.regions.map((item) => (
+                {shown.regions.map((item) => (
                   <Chip key={item} active={region === item} onClick={() => setRegion(item)}>
                     {item}
                   </Chip>
@@ -267,7 +301,7 @@ function Home() {
 
           {visible.length === 0 ? (
             <p className="mt-6 rounded-card border border-dashed border-rule bg-card px-4 py-8 text-center text-sm text-muted">
-              {episode.emptyHint}
+              {shown.emptyHint}
             </p>
           ) : (
             <ul className="mt-3 divide-y divide-rule border-y border-rule">
