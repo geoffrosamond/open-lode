@@ -1643,6 +1643,45 @@ const TA_PROJECTS: Project[] = [
   },
 ];
 
+const FINALE_TRANSCRIPT: Episode["transcript"] = [
+  {
+    heading: "The brief",
+    body: "Good evening. This is the last briefing. Not another country, and not another element. The question the series was walking toward. Where is the smart money. I am Leo.",
+  },
+  {
+    heading: "The long offtake",
+    body: "Critical minerals are the loud subject of the age. Governments are scrambling for long offtake, the contract that is meant to keep a nation supplied for fifteen years. You have heard the shape of those deals. A ministry, a smelter, a lawyer, and a pit that is not yet a pit. While the paper is argued, the miner is left holding the lode. Ore in the ground is not money in the account. A treaty does not load a ship.",
+  },
+  {
+    heading: "The small lode",
+    body: "The smart money is not a larger treaty. It is a smaller parcel, done properly. A small lode. A smart contract, so the terms settle when the conditions are met. Escrow, so nobody is paid on a promise. A bill of lading that matches the weight that was loaded, not the weight in a press release. Raw material shipped to a partner who is ready to process it. Not to a warehouse that hopes. Then the refined product, able to be sold and distributed. Own the flow. From the raw rock to the downstream reality. The government wants the metal inside the country. The miner wants to be paid for the tonne he can actually dig. Between them is a desk.",
+  },
+  {
+    heading: "The desk",
+    body: "The desk is Critical-Minerals.market. It is built to automate the market the long offtake leaves waiting. A small shipment. Escrow secured. The shipping bill weighed and loaded. Raw, to a processor who is ready. Refined product, on to a buyer. No fifteen-year rumour. A contract that can see the cargo.",
+  },
+  {
+    heading: "Three habits",
+    body: "Do not confuse a strategic stockpile with a sale. Do not pay for a lode you cannot weigh. And do not call a flow a market until the escrow, the bill, and the processor are the same story. The world is loud about critical minerals. The money that is smart will be quiet, and it will be on the water. That is the close. Critical-Minerals.market. If you are putting money to work, own the flow.",
+  },
+];
+
+const FINALE_PROJECTS: Project[] = [
+  {
+    id: "the-desk",
+    name: "Critical-Minerals.market",
+    company: "The desk",
+    state: "FLOW",
+    place: "Raw to refined",
+    commodities: ["The flow"],
+    stage: "Conceptual",
+    capital: "Escrow, then the bill",
+    heard: true,
+    stillOpen: "A weighed cargo, and a processor who is ready",
+    note: "The close of the series. Governments chase long offtake. Small miners wait. The desk automates the parcel in between: a smart contract, escrow, a bill of lading matched to the weight loaded, raw shipped to a processor, refined product on for sale. Own the flow. Not a Survey tonne, and not a fifteen-year treaty.",
+  },
+];
+
 const RECORDED: Episode[] = [
   {
     id: "australia",
@@ -1960,8 +1999,35 @@ const RECORDED: Episode[] = [
     projects: TA_PROJECTS,
     defaultOpen: "drc-coltan",
   },
+  {
+    id: "the-desk",
+    number: "End",
+    country: "The desk",
+    kind: "country",
+    title: "Where the money is",
+    kicker: "September 2026 · Finale",
+    voice: "Leo",
+    voiceNote: "English gentleman · unhurried British delivery",
+    src: "/podcast/episodes/the-desk/briefing.mp3",
+    lede: "The last briefing. Governments chase fifteen-year offtake, and the miner is left holding the lode. The smart money is a small parcel: escrow, a weighed bill, and a processor who is ready. The desk is Critical-Minerals.market.",
+    disclaimer:
+      "This is the close of the series, not a Survey table and not an offer of securities. Critical-Minerals.market is the desk named for that flow. A contract is not a cargo until it is weighed and loaded.",
+    regionLabel: "Step",
+    regionAll: "steps",
+    emptyHint: "Nothing matches. The card is the desk.",
+    stats: [
+      { label: "Treaty", value: "15 yr" },
+      { label: "Parcel", value: "Small" },
+      { label: "Own", value: "The flow" },
+    ],
+    transcript: FINALE_TRANSCRIPT,
+    commodities: ["The flow"],
+    regions: ["FLOW"],
+    projects: FINALE_PROJECTS,
+    defaultOpen: "the-desk",
+  },
 ];
 
 export const EPISODES: Episode[] = [...RECORDED, ...(SHELF as Episode[])];
 
-export const DEFAULT_EPISODE_ID = "sri-lanka";
+export const DEFAULT_EPISODE_ID = "the-desk";

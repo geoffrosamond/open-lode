@@ -34,12 +34,16 @@ function Home() {
 
   const listed = useMemo(() => {
     const q = episodeQuery.trim().toLowerCase();
-    return EPISODES.filter((item) => kindOf(item) === shelf).filter((item) => {
+    const items = EPISODES.filter((item) => kindOf(item) === shelf).filter((item) => {
       if (!q) return true;
       return `${item.country} ${item.symbol ?? ""} ${item.title} ${item.number}`
         .toLowerCase()
         .includes(q);
     });
+    if (shelf === "country") {
+      items.sort((a, b) => Number(b.id === "the-desk") - Number(a.id === "the-desk"));
+    }
+    return items;
   }, [shelf, episodeQuery]);
 
   const visible = useMemo(() => {
