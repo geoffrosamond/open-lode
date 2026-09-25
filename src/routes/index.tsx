@@ -95,18 +95,22 @@ function Home() {
 
   return (
     <main className="ol-page mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <p className="ol-bar">
+        <strong>Open Lode</strong>
+        <span>Journal · {EPISODES.length} briefings · Leo</span>
+      </p>
       <header className="ol-masthead border-b border-rule pb-8">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="min-w-0 max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.22em] text-copper uppercase">
-              Critical minerals · a gentleman’s briefing
+              A gentleman’s briefing
             </p>
             <h1 className="mt-3 font-display text-5xl leading-[0.9] font-medium tracking-tight sm:text-7xl">
               Open Lode
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">
               Projects that are public, advanced, and still open — for capital, offtake, or a
-              decision. Countries, elements, and chains. The briefings are read by Leo.
+              decision. Press play. The notes sit beside the voice.
             </p>
           </div>
           <img
@@ -114,7 +118,7 @@ function Home() {
             alt=""
             width={390}
             height={201}
-            className="ol-plate w-full max-w-[22rem] rounded-card shadow-[0_18px_40px_rgb(36_31_27/0.12)]"
+            className="ol-plate w-full max-w-[20rem] rounded-card shadow-[0_18px_40px_rgb(36_31_27/0.12)]"
           />
         </div>
         <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-1 text-sm sm:max-w-md">
@@ -194,7 +198,7 @@ function Home() {
                         aria-pressed={item.id === chain.id}
                         onClick={() => setChainId(item.id)}
                         className={
-                          "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
+                          "ol-ep flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2.5 text-left text-sm transition-colors " +
                           (item.id === chain.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
                         }
                       >
@@ -211,7 +215,7 @@ function Home() {
                         aria-pressed={item.id === shown.id}
                         onClick={() => chooseEpisode(item.id)}
                         className={
-                          "flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2 text-left text-sm transition-colors " +
+                          "ol-ep flex min-h-11 w-full items-baseline gap-3 rounded-2xl px-3 py-2.5 text-left text-sm transition-colors " +
                           (item.id === shown.id ? "bg-ink text-paper" : "bg-chip text-ink hover:bg-rule")
                         }
                       >
@@ -281,6 +285,7 @@ function Home() {
           ) : (
             <>
           <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold tracking-[0.2em] text-copper uppercase">The notes</p>
             <div className="relative">
               <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
               <input

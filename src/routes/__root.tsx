@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "A gentleman's briefing on Australia's open critical minerals projects, read by Leo.",
+          "A gentleman’s journal of open critical minerals projects, read by Leo.",
       },
       { name: "theme-color", content: "#241f1b" },
     ],
