@@ -94,21 +94,43 @@ function Home() {
   }, [shown, query, commodity, region, onlyHeard]);
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-      <header className="border-b border-rule pb-6">
-        <h1 className="m-0">
+    <main className="ol-page mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <header className="ol-masthead border-b border-rule pb-8">
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="min-w-0 max-w-2xl">
+            <p className="text-xs font-semibold tracking-[0.22em] text-copper uppercase">
+              Critical minerals · a gentleman’s briefing
+            </p>
+            <h1 className="mt-3 font-display text-5xl leading-[0.9] font-medium tracking-tight sm:text-7xl">
+              Open Lode
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
+              Projects that are public, advanced, and still open — for capital, offtake, or a
+              decision. Countries, elements, and chains. The briefings are read by Leo.
+            </p>
+          </div>
           <img
             src="/blog-header-logo.jpg"
-            alt="Open Lode — a critical minerals briefing"
-            className="w-full rounded-2xl"
+            alt=""
+            width={390}
+            height={201}
+            className="ol-plate w-full max-w-[22rem] rounded-card shadow-[0_18px_40px_rgb(36_31_27/0.12)]"
           />
-        </h1>
-        <p className="mt-5 max-w-3xl text-base leading-relaxed">
-          Open Lode is the Critical Minerals editorial desk: a collection of narrated briefings and
-          project notes covering the countries, elements, mines, and processing projects shaping
-          critical-mineral supply. Browse the shelf to understand what is being produced, what
-          remains open, and where capital, offtake, or development work may still be needed.
-        </p>
+        </div>
+        <dl className="mt-8 grid grid-cols-3 gap-x-4 gap-y-1 text-sm sm:max-w-md">
+          <div>
+            <dt className="text-muted">Shelves</dt>
+            <dd className="font-display text-2xl tabular-nums">4</dd>
+          </div>
+          <div>
+            <dt className="text-muted">Briefings</dt>
+            <dd className="font-display text-2xl tabular-nums">{EPISODES.length}</dd>
+          </div>
+          <div>
+            <dt className="text-muted">Voice</dt>
+            <dd className="font-display text-2xl">Leo</dd>
+          </div>
+        </dl>
       </header>
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[22rem_1fr]">
@@ -320,6 +342,21 @@ function Home() {
           )}
         </section>
       </div>
+
+      <footer className="mt-16 border-t border-rule pt-6 text-sm text-muted">
+        <p className="font-display text-lg text-ink">Open Lode</p>
+        <p className="mt-1 max-w-xl leading-relaxed">
+          A journal. Not a venue, not a broker. The desk that matches a tonne is{" "}
+          <a className="text-copper underline decoration-copper/30 underline-offset-4" href="https://criticalminerals.market">
+            criticalminerals.market
+          </a>
+          . Investor rooms sit at{" "}
+          <a className="text-copper underline decoration-copper/30 underline-offset-4" href="https://openraise.capital">
+            openraise.capital
+          </a>
+          .
+        </p>
+      </footer>
     </main>
   );
 }

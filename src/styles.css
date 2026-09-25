@@ -17,11 +17,18 @@
 
 @layer base {
   html {
-    background: var(--color-paper);
+    background:
+      radial-gradient(1200px 500px at 8% -10%, rgb(154 78 44 / 0.07), transparent 55%),
+      var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: transparent;
+    color: var(--color-ink);
   }
 
   h1,
@@ -29,6 +36,7 @@
   h3 {
     font-family: var(--font-display);
     text-wrap: balance;
+    font-optical-sizing: auto;
   }
 
   p {
@@ -44,6 +52,14 @@
     outline: 2px solid var(--color-copper);
     outline-offset: 3px;
   }
+}
+
+.ol-masthead h1 {
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+}
+
+.ol-plate {
+  border: 1px solid color-mix(in srgb, var(--color-rule) 80%, var(--color-copper) 20%);
 }
 
 @media (prefers-reduced-motion: reduce) {
